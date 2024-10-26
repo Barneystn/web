@@ -16,26 +16,14 @@
 
             // بررسی ورود
             if (username === validUsername && password === validPassword) {
+                // ذخیره وضعیت ورود در localStorage
+                localStorage.setItem('isLoggedIn', 'true');
                 window.location.href = 'index.html'; // هدایت به صفحه اصلی
             } else {
                 alert('Invalid username or password'); // پیام خطا
             }
         }
     </script>
-    <style>
-        body {
-            animation: fadeIn 0.5s ease-in-out;
-        }
-
-        @keyframes fadeIn {
-            from {
-                opacity: 0;
-            }
-            to {
-                opacity: 1;
-            }
-        }
-    </style>
 </head>
 <body class="bg-gray-900 text-white flex items-center justify-center h-screen">
     <div class="bg-gray-800 p-8 rounded-lg shadow-lg w-96">
