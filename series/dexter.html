@@ -5,7 +5,23 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dexter - Series Page</title>
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <style>
+        /* مخفی کردن محتوای صفحه تا زمان تأیید */
+        body { display: none; }
+    </style>
     <script>
+        window.onload = function() {
+            const isLoggedIn = localStorage.getItem('isLoggedIn');
+            if (isLoggedIn === 'true') {
+                // نمایش صفحه اگر کاربر وارد شده باشد
+                document.body.style.display = 'block';
+            } else {
+                // هدایت به صفحه ورود اگر کاربر وارد نشده باشد
+                window.location.href = 'login.html';
+            }
+        }
+    </script>
+   <script>
         // بررسی وضعیت ورود
         window.onload = function() {
             const isLoggedIn = localStorage.getItem('isLoggedIn');
