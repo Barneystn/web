@@ -6,18 +6,34 @@
     <title>Dexter - Series Page</title>
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
     <style>
-        /* سایر استایل‌ها */
         body { display: none; }
         .fade-in { opacity: 0; animation: fadeIn 1s ease forwards; }
         @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
         .animate-zoom:hover { transform: scale(1.05); transition: transform 0.3s ease-in-out; }
-        .episode-link { /* استایل لینک‌های اپیزود */ }
-        
+        .episode-links { max-height: 0; overflow: hidden; opacity: 0; transition: max-height 0.5s ease, opacity 0.5s ease; }
+        .show-links { max-height: 500px; opacity: 1; }
+        .episode-link {
+            display: inline-block;
+            padding: 4px 8px;
+            margin: 4px;
+            background-color: #3B82F6;
+            color: white;
+            border-radius: 0.375rem;
+            text-align: center;
+            width: 60px;
+            font-size: 0.75rem;
+            transition: background-color 0.2s, transform 0.2s;
+        }
+        .episode-link:hover {
+            background-color: #2563EB;
+            transform: scale(1.05);
+        }
+
         /* استایل مدال */
         .modal {
             display: none;
             position: fixed;
-            z-index: 10;
+            z-index: 50;
             left: 0;
             top: 0;
             width: 100%;
@@ -25,10 +41,9 @@
             background-color: rgba(0, 0, 0, 0.5);
             align-items: center;
             justify-content: center;
-            animation: fadeIn 0.5s;
         }
         .modal-content {
-            background-color: #111827;
+            background-color: #1f2937;
             padding: 20px;
             border-radius: 8px;
             width: 90%;
@@ -79,7 +94,7 @@
         function closeModal() {
             document.getElementById('episodeModal').style.display = 'none';
         }
-    </script>
+    </script> 
 </head>
 <body class="bg-gray-900 text-white fade-in">
     <header class="bg-gray-800 p-4 fade-in relative">
@@ -88,8 +103,18 @@
     </header>
 
     <main class="container mx-auto px-4 py-8 relative">
-        <!-- محتوا فصل و اپیزودها -->
         <div class="text-center fade-in">
+            <img src="https://i.ibb.co/tB8R8vW/99741f6b-8ea0-4016-8393-06903fd1463f.webp" alt="Dexter" class="w-64 h-auto mx-auto mb-4 rounded-lg animate-zoom shadow-lg">
+            <p class="text-lg max-w-lg mx-auto mt-4 text-gray-300 leading-relaxed">
+                Dexter is a series about a forensic expert who doubles as a vigilante serial killer. 
+                This show dives into the complex life of Dexter as he navigates both his dark impulses and personal life.
+            </p>
+            <div class="mt-4">
+                <p class="text-gray-300">IMDb Rating: <span class="font-bold">8.6/10</span></p>
+                <p class="text-gray-300">Rotten Tomatoes: <span class="font-bold">91%</span></p>
+            </div>
+
+            <!-- فصل‌ها -->
             <div class="mt-6 space-y-4">
                 <!-- فصل ۱ -->
                 <div class="relative inline-block mt-4">
@@ -99,22 +124,23 @@
                     <div id="episodeLinks1" class="episode-links mt-2">
                         <div class="flex flex-wrap justify-center">
                             <a href="#" class="episode-link" onclick="openModal()">Episode 1</a>
-                            <!-- بقیه اپیزودها -->
+                            <a href="#" class="episode-link" onclick="openModal()">Episode 2</a>
+                            <!-- سایر اپیزودها... -->
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-
-        <!-- مدال -->
-        <div id="episodeModal" class="modal" onclick="closeModal()">
-            <div class="modal-content" onclick="event.stopPropagation()">
-                <h2 class="text-xl font-bold text-white">Download Links</h2>
-                <a href="#" class="modal-button">Download Link</a>
-                <a href="#" class="modal-button">Telegram File</a>
-                <button class="modal-button bg-red-600" onclick="closeModal()">Close</button>
-            </div>
-        </div>
     </main>
+
+    <!-- مدال -->
+    <div id="episodeModal" class="modal" onclick="closeModal()">
+        <div class="modal-content" onclick="event.stopPropagation()">
+            <h2 class="text-xl font-bold text-white">Download Links</h2>
+            <a href="#" class="modal-button">Download Link</a>
+            <a href="#" class="modal-button">Telegram File</a>
+            <button class="modal-button bg-red-600" onclick="closeModal()">Close</button>
+        </div>
+    </div>
 </body>
 </html>
