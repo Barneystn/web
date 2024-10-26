@@ -11,19 +11,37 @@
             transform: scale(1.05);
             transition: transform 0.3s ease-in-out;
         }
+
         /* افکت fade-in برای صفحه اصلی */
         .fade-in {
             opacity: 0;
             animation: fadeInAnimation 1s ease forwards;
         }
+
         @keyframes fadeInAnimation {
             from { opacity: 0; }
             to { opacity: 1; }
         }
-    </style>
-    <style>
-        /* مخفی کردن محتوای صفحه تا زمان تأیید */
-        body { display: none; }
+
+        /* استایل و انیمیشن نوار جستجو */
+        .search-input {
+            width: 100%;
+            max-width: 300px;
+            background: #333;
+            color: white;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 50px;
+            outline: none;
+            transition: width 0.4s ease;
+        }
+        
+        .search-input:focus {
+            width: 100%;
+            background: #444;
+            transition: width 0.4s ease;
+            box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.3);
+        }
     </style>
     <script>
         window.onload = function() {
@@ -44,8 +62,15 @@
     </header>
     
     <main class="container mx-auto px-4 py-8">
+        <!-- نوار جستجو -->
+        <div class="flex justify-center mb-8">
+            <input type="text" placeholder="Search movies or series..." class="search-input" oninput="filterMovies(event)">
+        </div>
+
         <h3 class="text-2xl font-bold mb-6 text-center fade-in">Popular Movies</h3>
-        <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4">
+        
+        <!-- لیست فیلم‌ها -->
+        <div id="movie-list" class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4">
             <a href="series/dexter.html" class="card bg-gray-800 rounded-lg overflow-hidden shadow-md animate-zoom transition duration-300 ease-in-out transform hover:scale-105">
                 <img src="https://i.ibb.co/tB8R8vW/99741f6b-8ea0-4016-8393-06903fd1463f.webp" alt="Dexter" class="w-full h-48 object-cover">
                 <div class="p-4">
@@ -56,5 +81,17 @@
             <!-- Add more movie cards with the same structure -->
         </div>
     </main>
+
+    <script>
+        function filterMovies(event) {
+            const searchTerm = event.target.value.toLowerCase();
+            const movies = document.querySelectorAll('#movie-list .card');
+            
+            movies.forEach(movie => {
+                const title = movie.querySelector('h4').textContent.toLowerCase();
+                movie.style.display = title.includes(searchTerm) ? 'block' : 'none';
+            });
+        }
+    </script>
 </body>
 </html>
