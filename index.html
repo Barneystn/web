@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Movie and Series Download Site</title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+</head>
+<body class="bg-gray-900 text-white">
+  <!-- Header -->
+  <header class="bg-gray-800 shadow-md">
+    <div class="container mx-auto px-4 py-4 flex justify-between items-center">
+      <h1 class="text-2xl font-bold">Movies and Series</h1>
+      <nav class="flex space-x-6">
+        <a href="#" class="hover:text-yellow-500">Home</a>
+        <a href="#" class="hover:text-yellow-500">Movies</a>
+        <a href="#" class="hover:text-yellow-500">Series</a>
+        <a href="#" class="hover:text-yellow-500">Blog</a>
+        <a href="#" class="hover:text-yellow-500">Contact Us</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="bg-cover bg-center h-80 flex items-center justify-center" style="background-image: url('https://source.unsplash.com/random/1920x1080/?movie');">
+    <div class="bg-black bg-opacity-50 p-6 rounded-lg text-center">
+      <h2 class="text-3xl font-bold mb-4">Download the Best Movies and Series</h2>
+      <p class="text-lg mb-4">The largest archive of movies and series for you</p>
+      <button class="px-4 py-2 bg-yellow-500 text-gray-900 font-semibold rounded-lg hover:bg-yellow-600">Start Downloading</button>
+    </div>
+  </section>
+
+  <!-- Popular Movies -->
+  <section class="container mx-auto px-4 py-8">
+    <h3 class="text-2xl font-bold mb-6">Popular Movies</h3>
+    <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4">
+      <div class="bg-gray-800 rounded-lg overflow-hidden shadow-md hover:shadow-lg transition-shadow">
+        <img src="https://source.unsplash.com/random/300x400/?film" alt="Movie Title" class="w-full h-48 object-cover">
+        <div class="p-4">
+          <h4 class="text-lg font-semibold">Movie Name</h4>
+          <p class="text-gray-400 text-sm">Genre: Action</p>
+        </div>
+      </div>
+      <!-- Repeat Card Item for other movies -->
+    </div>
+  </section>
+
+  <!-- Latest Movies Section -->
+  <section class="container mx-auto px-4 py-8">
+    <h3 class="text-2xl font-bold mb-6">Latest Movies</h3>
+    <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4">
+      <!-- Repeat similar card items here for each latest movie -->
+    </div>
+  </section>
+
+  <!-- Genre Section -->
+  <section class="container mx-auto px-4 py-8">
+    <h3 class="text-2xl font-bold mb-6">Genres</h3>
+    <div class="flex flex-wrap gap-4">
+      <span class="px-4 py-2 bg-gray-700 rounded-full hover:bg-yellow-500 cursor-pointer">Action</span>
+      <span class="px-4 py-2 bg-gray-700 rounded-full hover:bg-yellow-500 cursor-pointer">Comedy</span>
+      <span class="px-4 py-2 bg-gray-700 rounded-full hover:bg-yellow-500 cursor-pointer">Drama</span>
+      <!-- Add more genres as needed -->
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="bg-gray-800 py-4">
+    <div class="container mx-auto px-4 text-center">
+      <p>All rights reserved &copy; 2023</p>
+    </div>
+  </footer>
+</body>
+</html>
