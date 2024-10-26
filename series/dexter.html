@@ -70,7 +70,9 @@
             links.classList.toggle('show-links'); // تغییر وضعیت نمایش لینک‌ها
 
             // اسکرول به پایین صفحه
-            links.scrollIntoView({ behavior: 'smooth' });
+            if (links.classList.contains('show-links')) {
+                links.scrollIntoView({ behavior: 'smooth' });
+            }
         }
     </script> 
 </head>
