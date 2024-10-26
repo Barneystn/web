@@ -21,11 +21,19 @@
             to { opacity: 1; }
         }
     </style>
+    <style>
+        /* مخفی کردن محتوای صفحه تا زمان تأیید */
+        body { display: none; }
+    </style>
     <script>
         window.onload = function() {
             const isLoggedIn = localStorage.getItem('isLoggedIn');
-            if (!isLoggedIn || isLoggedIn !== 'true') {
-                window.location.href = 'login.html';
+            if (isLoggedIn === 'true') {
+                // نمایش صفحه اگر کاربر وارد شده باشد
+                document.body.style.display = 'block';
+            } else {
+                // هدایت به صفحه ورود اگر کاربر وارد نشده باشد
+                window.location.href = '../login.html';
             }
         }
     </script>

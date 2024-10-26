@@ -17,20 +17,10 @@
                 document.body.style.display = 'block';
             } else {
                 // هدایت به صفحه ورود اگر کاربر وارد نشده باشد
-                window.location.href = 'login.html';
-            }
-        }
-    </script>
-   <script>
-        // بررسی وضعیت ورود
-        window.onload = function() {
-            const isLoggedIn = localStorage.getItem('isLoggedIn');
-            if (!isLoggedIn || isLoggedIn !== 'true') {
-                // هدایت به صفحه ورود در صورت عدم ورود
                 window.location.href = '../login.html';
             }
         }
-    </script>    
+    </script> 
 </head>
 <body class="bg-gray-900 text-white">
     <header class="bg-gray-800 p-4">
