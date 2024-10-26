@@ -26,19 +26,16 @@
             transition: transform 0.3s ease-in-out;
         }
 
-        /* استایل برای منوی شناور */
-        .dropdown {
+        /* استایل برای لینک‌های قسمت‌ها */
+        .episode-links {
             display: none;
-            position: absolute;
-            background-color: #1f2937; /* رنگ پس‌زمینه منو */
-            border-radius: 8px;
-            padding: 10px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            opacity: 0;
+            transition: opacity 0.5s ease; /* انیمیشن شفافیت */
         }
 
-        /* استایل دکمه برای نشان دادن منو */
-        .show {
-            display: block; /* نمایش منو */
+        .show-links {
+            display: block;
+            opacity: 1;
         }
     </style>
     <script>
@@ -53,20 +50,10 @@
             }
         }
 
-        // تابع برای نمایش/مخفی کردن منوی دانلود
-        function toggleDropdown() {
-            const dropdown = document.getElementById('downloadMenu');
-            dropdown.classList.toggle('show'); // تغییر وضعیت نمایش منو
-        }
-
-        // بستن منو هنگام کلیک در هر جای دیگر صفحه
-        window.onclick = function(event) {
-            const dropdown = document.getElementById('downloadMenu');
-            if (!event.target.matches('.download-btn')) {
-                if (dropdown.classList.contains('show')) {
-                    dropdown.classList.remove('show');
-                }
-            }
+        // تابع برای نمایش/مخفی کردن لینک‌های قسمت‌ها
+        function toggleEpisodeLinks() {
+            const links = document.getElementById('episodeLinks');
+            links.classList.toggle('show-links'); // تغییر وضعیت نمایش لینک‌ها
         }
     </script> 
 </head>
@@ -89,14 +76,33 @@
                 <p class="text-gray-300">Rotten Tomatoes: <span class="font-bold">91%</span></p>
             </div>
             
-            <!-- دکمه دانلود -->
-            <div class="download relative inline-block mt-6">
-                <button class="download-btn bg-blue-600 text-white py-2 px-4 rounded-lg hover:bg-blue-500 transition duration-200" onclick="toggleDropdown()">
-                    Download
+            <!-- باکس Show Links -->
+            <div class="relative inline-block mt-6">
+                <button class="bg-blue-600 text-white py-2 px-4 rounded-lg hover:bg-blue-500 transition duration-200" onclick="toggleEpisodeLinks()">
+                    Show Links
                 </button>
-                <!-- منوی شناور -->
-                <div id="downloadMenu" class="dropdown mt-2">
-                    <a href="#" class="block px-4 py-2 text-gray-300 hover:bg-gray-700 rounded">فصل اول</a>
+                <!-- لینک‌های قسمت‌ها -->
+                <div id="episodeLinks" class="episode-links mt-2">
+                    <a href="#" class="block px-4 py-2 text-gray-300 hover:bg-gray-700 rounded">قسمت ۱</a>
+                    <a href="#" class="block px-4 py-2 text-gray-300 hover:bg-gray-700 rounded">قسمت ۲</a>
+                    <a href="#" class="block px-4 py-2 text-gray-300 hover:bg-gray-700 rounded">قسمت ۳</a>
+                    <a href="#" class="block px-4 py-2 text-gray-300 hover:bg-gray-700 rounded">قسمت ۴</a>
+                    <a href="#" class="block px-4 py-2 text-gray-300 hover:bg-gray-700 rounded">قسمت ۵</a>
+                    <a href="#" class="block px-4 py-2 text-gray-300 hover:bg-gray-700 rounded">قسمت ۶</a>
+                    <a href="#" class="block px-4 py-2 text-gray-300 hover:bg-gray-700 rounded">قسمت ۷</a>
+                    <a href="#" class="block px-4 py-2 text-gray-300 hover:bg-gray-700 rounded">قسمت ۸</a>
+                    <a href="#" class="block px-4 py-2 text-gray-300 hover:bg-gray-700 rounded">قسمت ۹</a>
+                    <a href="#" class="block px-4 py-2 text-gray-300 hover:bg-gray-700 rounded">قسمت ۱۰</a>
+                    <a href="#" class="block px-4 py-2 text-gray-300 hover:bg-gray-700 rounded">قسمت ۱۱</a>
+                    <a href="#" class="block px-4 py-2 text-gray-300 hover:bg-gray-700 rounded">قسمت ۱۲</a>
+                    <a href="#" class="block px-4 py-2 text-gray-300 hover:bg-gray-700 rounded">قسمت ۱۳</a>
+                    <a href="#" class="block px-4 py-2 text-gray-300 hover:bg-gray-700 rounded">قسمت ۱۴</a>
+                    <a href="#" class="block px-4 py-2 text-gray-300 hover:bg-gray-700 rounded">قسمت ۱۵</a>
+                    <a href="#" class="block px-4 py-2 text-gray-300 hover:bg-gray-700 rounded">قسمت ۱۶</a>
+                    <a href="#" class="block px-4 py-2 text-gray-300 hover:bg-gray-700 rounded">قسمت ۱۷</a>
+                    <a href="#" class="block px-4 py-2 text-gray-300 hover:bg-gray-700 rounded">قسمت ۱۸</a>
+                    <a href="#" class="block px-4 py-2 text-gray-300 hover:bg-gray-700 rounded">قسمت ۱۹</a>
+                    <a href="#" class="block px-4 py-2 text-gray-300 hover:bg-gray-700 rounded">قسمت ۲۰</a>
                 </div>
             </div>
         </div>
