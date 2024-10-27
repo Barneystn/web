@@ -69,6 +69,22 @@
         .modal-button:hover {
             background-color: #2563EB;
         }
+
+        /* انیمیشن تایپی */
+        .typing-animation {
+            border-right: 2px solid white;
+            white-space: nowrap;
+            overflow: hidden;
+            width: 0;
+            animation: typing 5s steps(30) forwards, blink 0.75s step-end infinite;
+        }
+        @keyframes typing {
+            from { width: 0; }
+            to { width: 100%; }
+        }
+        @keyframes blink {
+            50% { border-color: transparent; }
+        }
     </style>
     <script>
         window.onload = function() {
@@ -117,7 +133,6 @@
         }
 
         let currentSeason; // متغیر برای ذخیره شماره فصل فعلی
-
     </script> 
 </head>
 <body class="bg-gray-900 text-white fade-in">
@@ -129,7 +144,7 @@
     <main class="container mx-auto px-4 py-8 relative">
         <div class="text-center fade-in">
             <img src="https://i.ibb.co/1JqZymT/supernatural-castiel-dean-and-sam-fi61lb0dkhpwdt4j.webp" alt="supernatural" class="w-64 h-auto mx-auto mb-4 rounded-lg animate-zoom shadow-lg">
-            <p class="text-lg max-w-lg mx-auto mt-4 text-gray-300 leading-relaxed">
+            <p class="text-lg max-w-lg mx-auto mt-4 text-gray-300 leading-relaxed typing-animation">
                 دو برادر به دنبال پدر گمشده شان هستند، مردی که آنها را بزرگ کرده و به آن دو آموزش داده که چگونه در مقابل نیروهای ماورای طبیعی بجنگند....
             </p>
             <div class="mt-4">
