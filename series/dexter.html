@@ -1,348 +1,167 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dexter - Series Page</title>
-    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
-    <style>
-        body { display: none; }
-        .fade-in { opacity: 0; animation: fadeIn 1s ease forwards; }
-        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
-        .animate-zoom:hover { transform: scale(1.05); transition: transform 0.3s ease-in-out; }
-        .episode-links { max-height: 0; overflow: hidden; opacity: 0; transition: max-height 0.5s ease, opacity 0.5s ease; }
-        .show-links { max-height: 500px; opacity: 1; }
-        .episode-link {
-            display: inline-block;
-            padding: 4px 8px;
-            margin: 4px;
-            background-color: #3B82F6;
-            color: white;
-            border-radius: 0.375rem;
-            text-align: center;
-            width: 60px;
-            font-size: 0.75rem; /* اندازه فونت کوچک‌تر */
-            transition: background-color 0.2s, transform 0.2s;
-        }
-        .episode-link:hover {
-            background-color: #2563EB;
-            transform: scale(1.05);
-        }
-        .modal {
-            display: none; 
-            position: fixed; 
-            z-index: 10; 
-            left: 0; top: 0; 
-            width: 100%; height: 100%; 
-            overflow: auto; 
-            background-color: rgba(0, 0, 0, 0.7); 
-            padding-top: 60px;
-        }
-        .modal-content {
-            background-color: #2d3748; 
-            margin: 5% auto; 
-            padding: 20px; 
-            border: 1px solid #888; 
-            width: 80%; 
-            max-width: 400px; 
-            border-radius: 0.375rem;
-        }
-        .modal-button {
-            display: block;
-            margin-top: 10px;
-            padding: 8px;
-            background-color: #3B82F6; 
-            color: white; 
-            text-align: center; 
-            border-radius: 0.375rem; 
-            transition: background-color 0.2s;
-        }
-        .modal-button:hover {
-            background-color: #2563EB;
-        }
-    </style>
-    <script>
-        window.onload = function() {
-            const isLoggedIn = localStorage.getItem('isLoggedIn');
-            if (isLoggedIn === 'true') {
-                document.body.style.display = 'block';
-            } else {
-                window.location.href = '../login.html';
-            }
-        }
-
-        function toggleEpisodeLinks(season) {
-            const links = document.getElementById(`episodeLinks${season}`);
-            links.classList.toggle('show-links');
-            if (links.classList.contains('show-links')) {
-                links.scrollIntoView({ behavior: 'smooth' });
-            }
-        }
-
-        function openModal(episodeNumber) {
-            const modal = document.getElementById("episodeModal");
-            modal.style.display = "block";
-            const modalContent = document.getElementById("modalContent");
-            modalContent.innerHTML = `
-                <h2 class="text-lg font-bold">Episode ${episodeNumber} Download</h2>
-                <p class="mt-2 text-gray-400">Download link for Episode ${episodeNumber}</p>
-                <p class="mt-2 text-gray-400">Telegram File: <a href="#" class="text-blue-400">Click Here</a></p>
-                <a href="#" class="modal-button" onclick="closeModal()">Close</a>
-            `;
-        }
-
-        function closeModal() {
-            const modal = document.getElementById("episodeModal");
-            modal.style.display = "none";
-        }
-    </script> 
-</head>
-<body class="bg-gray-900 text-white fade-in">
-    <header class="bg-gray-800 p-4 fade-in relative">
-        <a href="../index.html" class="absolute top-4 left-4 inline-block bg-blue-600 text-white py-1 px-2 rounded-lg shadow-md text-sm hover:bg-blue-500 hover:scale-105 transition duration-300 ease-in-out">Home</a>
-        <h1 class="text-4xl font-bold text-center hover:text-red-500 transition-colors duration-300">Dexter</h1>
-    </header>
-
-    <main class="container mx-auto px-4 py-8 relative">
-        <div class="text-center fade-in">
-            <img src="https://i.ibb.co/tB8R8vW/99741f6b-8ea0-4016-8393-06903fd1463f.webp" alt="Dexter" class="w-64 h-auto mx-auto mb-4 rounded-lg animate-zoom shadow-lg">
-            <p class="text-lg max-w-lg mx-auto mt-4 text-gray-300 leading-relaxed">
-                Dexter is a series about a forensic expert who doubles as a vigilante serial killer. 
-                This show dives into the complex life of Dexter as he navigates both his dark impulses and personal life.
-            </p>
-            <div class="mt-4">
-                <p class="text-gray-300">IMDb Rating: <span class="font-bold">8.6/10</span></p>
-                <p class="text-gray-300">Rotten Tomatoes: <span class="font-bold">91%</span></p>
-            </div>
-
-            <!-- فصل‌ها -->
-            <div class="mt-6 space-y-4">
-                <!-- فصل ۱ -->
-                <div class="relative inline-block mt-4">
-                    <button class="bg-blue-600 text-white py-2 px-4 rounded-lg hover:bg-blue-500 transition duration-200" onclick="toggleEpisodeLinks(1)">
-                        Season 1
-                    </button>
-                    <div id="episodeLinks1" class="episode-links mt-2">
-                        <div class="flex flex-wrap justify-center">
-                            <a href="#" class="episode-link" onclick="openModal(1)">Episode 1</a>
-                            <a href="#" class="episode-link" onclick="openModal(2)">Episode 2</a>
-                            <a href="#" class="episode-link" onclick="openModal(3)">Episode 3</a>
-                            <a href="#" class="episode-link" onclick="openModal(4)">Episode 4</a>
-                            <a href="#" class="episode-link" onclick="openModal(5)">Episode 5</a>
-                            <a href="#" class="episode-link" onclick="openModal(6)">Episode 6</a>
-                            <a href="#" class="episode-link" onclick="openModal(7)">Episode 7</a>
-                            <a href="#" class="episode-link" onclick="openModal(8)">Episode 8</a>
-                            <a href="#" class="episode-link" onclick="openModal(9)">Episode 9</a>
-                            <a href="#" class="episode-link" onclick="openModal(10)">Episode 10</a>
-                            <a href="#" class="episode-link" onclick="openModal(11)">Episode 11</a>
-                            <a href="#" class="episode-link" onclick="openModal(12)">Episode 12</a>
-                            <a href="#" class="episode-link" onclick="openModal(13)">Episode 13</a>
-                            <a href="#" class="episode-link" onclick="openModal(14)">Episode 14</a>
-                            <a href="#" class="episode-link" onclick="openModal(15)">Episode 15</a>
-                            <a href="#" class="episode-link" onclick="openModal(16)">Episode 16</a>
-                            <a href="#" class="episode-link" onclick="openModal(17)">Episode 17</a>
-                            <a href="#" class="episode-link" onclick="openModal(18)">Episode 18</a>
-                            <a href="#" class="episode-link" onclick="openModal(19)">Episode 19</a>
-                            <a href="#" class="episode-link" onclick="openModal(20)">Episode 20</a>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- فصل ۲ -->
-                <div class="relative inline-block mt-4">
-                    <button class="bg-blue-600 text-white py-2 px-4 rounded-lg hover:bg-blue-500 transition duration-200" onclick="toggleEpisodeLinks(2)">
-                        Season 2
-                    </button>
-                    <div id="episodeLinks2" class="episode-links mt-2">
-                        <div class="flex flex-wrap justify-center">
-                            <a href="#" class="episode-link" onclick="openModal(1)">Episode 1</a>
-                            <a href="#" class="episode-link" onclick="openModal(2)">Episode 2</a>
-                            <a href="#" class="episode-link" onclick="openModal(3)">Episode 3</a>
-                            <a href="#" class="episode-link" onclick="openModal(4)">Episode 4</a>
-                            <a href="#" class="episode-link" onclick="openModal(5)">Episode 5</a>
-                            <a href="#" class="episode-link" onclick="openModal(6)">Episode 6</a>
-                            <a href="#" class="episode-link" onclick="openModal(7)">Episode 7</a>
-                            <a href="#" class="episode-link" onclick="openModal(8)">Episode 8</a>
-                            <a href="#" class="episode-link" onclick="openModal(9)">Episode 9</a>
-                            <a href="#" class="episode-link" onclick="openModal(10)">Episode 10</a>
-                            <a href="#" class="episode-link" onclick="openModal(11)">Episode 11</a>
-                            <a href="#" class="episode-link" onclick="openModal(12)">Episode 12</a>
-                            <a href="#" class="episode-link" onclick="openModal(13)">Episode 13</a>
-                            <a href="#" class="episode-link" onclick="openModal(14)">Episode 14</a>
-                            <a href="#" class="episode-link" onclick="openModal(15)">Episode 15</a>
-                            <a href="#" class="episode-link" onclick="openModal(16)">Episode 16</a>
-                            <a href="#" class="episode-link" onclick="openModal(17)">Episode 17</a>
-                            <a href="#" class="episode-link" onclick="openModal(18)">Episode 18</a>
-                            <a href="#" class="episode-link" onclick="openModal(19)">Episode 19</a>
-                            <a href="#" class="episode-link" onclick="openModal(20)">Episode 20</a>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- فصل ۳ -->
-                <div class="relative inline-block mt-4">
-                    <button class="bg-blue-600 text-white py-2 px-4 rounded-lg hover:bg-blue-500 transition duration-200" onclick="toggleEpisodeLinks(3)">
-                        Season 3
-                    </button>
-                    <div id="episodeLinks3" class="episode-links mt-2">
-                        <div class="flex flex-wrap justify-center">
-                            <a href="#" class="episode-link" onclick="openModal(1)">Episode 1</a>
-                            <a href="#" class="episode-link" onclick="openModal(2)">Episode 2</a>
-                            <a href="#" class="episode-link" onclick="openModal(3)">Episode 3</a>
-                            <a href="#" class="episode-link" onclick="openModal(4)">Episode 4</a>
-                            <a href="#" class="episode-link" onclick="openModal(5)">Episode 5</a>
-                            <a href="#" class="episode-link" onclick="openModal(6)">Episode 6</a>
-                            <a href="#" class="episode-link" onclick="openModal(7)">Episode 7</a>
-                            <a href="#" class="episode-link" onclick="openModal(8)">Episode 8</a>
-                            <a href="#" class="episode-link" onclick="openModal(9)">Episode 9</a>
-                            <a href="#" class="episode-link" onclick="openModal(10)">Episode 10</a>
-                            <a href="#" class="episode-link" onclick="openModal(11)">Episode 11</a>
-                            <a href="#" class="episode-link" onclick="openModal(12)">Episode 12</a>
-                            <a href="#" class="episode-link" onclick="openModal(13)">Episode 13</a>
-                            <a href="#" class="episode-link" onclick="openModal(14)">Episode 14</a>
-                            <a href="#" class="episode-link" onclick="openModal(15)">Episode 15</a>
-                            <a href="#" class="episode-link" onclick="openModal(16)">Episode 16</a>
-                            <a href="#" class="episode-link" onclick="openModal(17)">Episode 17</a>
-                            <a href="#" class="episode-link" onclick="openModal(18)">Episode 18</a>
-                            <a href="#" class="episode-link" onclick="openModal(19)">Episode 19</a>
-                            <a href="#" class="episode-link" onclick="openModal(20)">Episode 20</a>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- فصل ۴ -->
-                <div class="relative inline-block mt-4">
-                    <button class="bg-blue-600 text-white py-2 px-4 rounded-lg hover:bg-blue-500 transition duration-200" onclick="toggleEpisodeLinks(4)">
-                        Season 4
-                    </button>
-                    <div id="episodeLinks4" class="episode-links mt-2">
-                        <div class="flex flex-wrap justify-center">
-                            <a href="#" class="episode-link" onclick="openModal(1)">Episode 1</a>
-                            <a href="#" class="episode-link" onclick="openModal(2)">Episode 2</a>
-                            <a href="#" class="episode-link" onclick="openModal(3)">Episode 3</a>
-                            <a href="#" class="episode-link" onclick="openModal(4)">Episode 4</a>
-                            <a href="#" class="episode-link" onclick="openModal(5)">Episode 5</a>
-                            <a href="#" class="episode-link" onclick="openModal(6)">Episode 6</a>
-                            <a href="#" class="episode-link" onclick="openModal(7)">Episode 7</a>
-                            <a href="#" class="episode-link" onclick="openModal(8)">Episode 8</a>
-                            <a href="#" class="episode-link" onclick="openModal(9)">Episode 9</a>
-                            <a href="#" class="episode-link" onclick="openModal(10)">Episode 10</a>
-                            <a href="#" class="episode-link" onclick="openModal(11)">Episode 11</a>
-                            <a href="#" class="episode-link" onclick="openModal(12)">Episode 12</a>
-                            <a href="#" class="episode-link" onclick="openModal(13)">Episode 13</a>
-                            <a href="#" class="episode-link" onclick="openModal(14)">Episode 14</a>
-                            <a href="#" class="episode-link" onclick="openModal(15)">Episode 15</a>
-                            <a href="#" class="episode-link" onclick="openModal(16)">Episode 16</a>
-                            <a href="#" class="episode-link" onclick="openModal(17)">Episode 17</a>
-                            <a href="#" class="episode-link" onclick="openModal(18)">Episode 18</a>
-                            <a href="#" class="episode-link" onclick="openModal(19)">Episode 19</a>
-                            <a href="#" class="episode-link" onclick="openModal(20)">Episode 20</a>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- فصل ۵ -->
-                <div class="relative inline-block mt-4">
-                    <button class="bg-blue-600 text-white py-2 px-4 rounded-lg hover:bg-blue-500 transition duration-200" onclick="toggleEpisodeLinks(5)">
-                        Season 5
-                    </button>
-                    <div id="episodeLinks5" class="episode-links mt-2">
-                        <div class="flex flex-wrap justify-center">
-                            <a href="#" class="episode-link" onclick="openModal(1)">Episode 1</a>
-                            <a href="#" class="episode-link" onclick="openModal(2)">Episode 2</a>
-                            <a href="#" class="episode-link" onclick="openModal(3)">Episode 3</a>
-                            <a href="#" class="episode-link" onclick="openModal(4)">Episode 4</a>
-                            <a href="#" class="episode-link" onclick="openModal(5)">Episode 5</a>
-                            <a href="#" class="episode-link" onclick="openModal(6)">Episode 6</a>
-                            <a href="#" class="episode-link" onclick="openModal(7)">Episode 7</a>
-                            <a href="#" class="episode-link" onclick="openModal(8)">Episode 8</a>
-                            <a href="#" class="episode-link" onclick="openModal(9)">Episode 9</a>
-                            <a href="#" class="episode-link" onclick="openModal(10)">Episode 10</a>
-                            <a href="#" class="episode-link" onclick="openModal(11)">Episode 11</a>
-                            <a href="#" class="episode-link" onclick="openModal(12)">Episode 12</a>
-                            <a href="#" class="episode-link" onclick="openModal(13)">Episode 13</a>
-                            <a href="#" class="episode-link" onclick="openModal(14)">Episode 14</a>
-                            <a href="#" class="episode-link" onclick="openModal(15)">Episode 15</a>
-                            <a href="#" class="episode-link" onclick="openModal(16)">Episode 16</a>
-                            <a href="#" class="episode-link" onclick="openModal(17)">Episode 17</a>
-                            <a href="#" class="episode-link" onclick="openModal(18)">Episode 18</a>
-                            <a href="#" class="episode-link" onclick="openModal(19)">Episode 19</a>
-                            <a href="#" class="episode-link" onclick="openModal(20)">Episode 20</a>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- فصل ۶ -->
-                <div class="relative inline-block mt-4">
-                    <button class="bg-blue-600 text-white py-2 px-4 rounded-lg hover:bg-blue-500 transition duration-200" onclick="toggleEpisodeLinks(6)">
-                        Season 6
-                    </button>
-                    <div id="episodeLinks6" class="episode-links mt-2">
-                        <div class="flex flex-wrap justify-center">
-                            <a href="#" class="episode-link" onclick="openModal(1)">Episode 1</a>
-                            <a href="#" class="episode-link" onclick="openModal(2)">Episode 2</a>
-                            <a href="#" class="episode-link" onclick="openModal(3)">Episode 3</a>
-                            <a href="#" class="episode-link" onclick="openModal(4)">Episode 4</a>
-                            <a href="#" class="episode-link" onclick="openModal(5)">Episode 5</a>
-                            <a href="#" class="episode-link" onclick="openModal(6)">Episode 6</a>
-                            <a href="#" class="episode-link" onclick="openModal(7)">Episode 7</a>
-                            <a href="#" class="episode-link" onclick="openModal(8)">Episode 8</a>
-                            <a href="#" class="episode-link" onclick="openModal(9)">Episode 9</a>
-                            <a href="#" class="episode-link" onclick="openModal(10)">Episode 10</a>
-                            <a href="#" class="episode-link" onclick="openModal(11)">Episode 11</a>
-                            <a href="#" class="episode-link" onclick="openModal(12)">Episode 12</a>
-                            <a href="#" class="episode-link" onclick="openModal(13)">Episode 13</a>
-                            <a href="#" class="episode-link" onclick="openModal(14)">Episode 14</a>
-                            <a href="#" class="episode-link" onclick="openModal(15)">Episode 15</a>
-                            <a href="#" class="episode-link" onclick="openModal(16)">Episode 16</a>
-                            <a href="#" class="episode-link" onclick="openModal(17)">Episode 17</a>
-                            <a href="#" class="episode-link" onclick="openModal(18)">Episode 18</a>
-                            <a href="#" class="episode-link" onclick="openModal(19)">Episode 19</a>
-                            <a href="#" class="episode-link" onclick="openModal(20)">Episode 20</a>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- فصل ۷ -->
-                <div class="relative inline-block mt-4">
-                    <button class="bg-blue-600 text-white py-2 px-4 rounded-lg hover:bg-blue-500 transition duration-200" onclick="toggleEpisodeLinks(7)">
-                        Season 7
-                    </button>
-                    <div id="episodeLinks7" class="episode-links mt-2">
-                        <div class="flex flex-wrap justify-center">
-                            <a href="#" class="episode-link" onclick="openModal(1)">Episode 1</a>
-                            <a href="#" class="episode-link" onclick="openModal(2)">Episode 2</a>
-                            <a href="#" class="episode-link" onclick="openModal(3)">Episode 3</a>
-                            <a href="#" class="episode-link" onclick="openModal(4)">Episode 4</a>
-                            <a href="#" class="episode-link" onclick="openModal(5)">Episode 5</a>
-                            <a href="#" class="episode-link" onclick="openModal(6)">Episode 6</a>
-                            <a href="#" class="episode-link" onclick="openModal(7)">Episode 7</a>
-                            <a href="#" class="episode-link" onclick="openModal(8)">Episode 8</a>
-                            <a href="#" class="episode-link" onclick="openModal(9)">Episode 9</a>
-                            <a href="#" class="episode-link" onclick="openModal(10)">Episode 10</a>
-                            <a href="#" class="episode-link" onclick="openModal(11)">Episode 11</a>
-                            <a href="#" class="episode-link" onclick="openModal(12)">Episode 12</a>
-                            <a href="#" class="episode-link" onclick="openModal(13)">Episode 13</a>
-                            <a href="#" class="episode-link" onclick="openModal(14)">Episode 14</a>
-                            <a href="#" class="episode-link" onclick="openModal(15)">Episode 15</a>
-                            <a href="#" class="episode-link" onclick="openModal(16)">Episode 16</a>
-                            <a href="#" class="episode-link" onclick="openModal(17)">Episode 17</a>
-                            <a href="#" class="episode-link" onclick="openModal(18)">Episode 18</a>
-                            <a href="#" class="episode-link" onclick="openModal(19)">Episode 19</a>
-                            <a href="#" class="episode-link" onclick="openModal(20)">Episode 20</a>
-                        </div>
+            <!-- فصل ۳ -->
+            <div class="relative inline-block mt-4">
+                <button class="bg-blue-600 text-white py-2 px-4 rounded-lg hover:bg-blue-500 transition duration-200" onclick="toggleEpisodeLinks(3)">
+                    Season 3
+                </button>
+                <div id="episodeLinks3" class="episode-links mt-2">
+                    <div class="flex flex-wrap justify-center">
+                        <a href="#" class="episode-link" onclick="showModal()">Episode 1</a>
+                        <a href="#" class="episode-link" onclick="showModal()">Episode 2</a>
+                        <a href="#" class="episode-link" onclick="showModal()">Episode 3</a>
+                        <a href="#" class="episode-link" onclick="showModal()">Episode 4</a>
+                        <a href="#" class="episode-link" onclick="showModal()">Episode 5</a>
+                        <a href="#" class="episode-link" onclick="showModal()">Episode 6</a>
+                        <a href="#" class="episode-link" onclick="showModal()">Episode 7</a>
+                        <a href="#" class="episode-link" onclick="showModal()">Episode 8</a>
+                        <a href="#" class="episode-link" onclick="showModal()">Episode 9</a>
+                        <a href="#" class="episode-link" onclick="showModal()">Episode 10</a>
+                        <a href="#" class="episode-link" onclick="showModal()">Episode 11</a>
+                        <a href="#" class="episode-link" onclick="showModal()">Episode 12</a>
+                        <a href="#" class="episode-link" onclick="showModal()">Episode 13</a>
+                        <a href="#" class="episode-link" onclick="showModal()">Episode 14</a>
+                        <a href="#" class="episode-link" onclick="showModal()">Episode 15</a>
+                        <a href="#" class="episode-link" onclick="showModal()">Episode 16</a>
+                        <a href="#" class="episode-link" onclick="showModal()">Episode 17</a>
+                        <a href="#" class="episode-link" onclick="showModal()">Episode 18</a>
+                        <a href="#" class="episode-link" onclick="showModal()">Episode 19</a>
+                        <a href="#" class="episode-link" onclick="showModal()">Episode 20</a>
                     </div>
                 </div>
             </div>
-        </div>
-    </main>
 
-    <!-- Modal -->
-    <div id="episodeModal" class="modal">
-        <div class="modal-content">
-            <span class="text-gray-300 cursor-pointer" onclick="closeModal()">&times;</span>
-            <div id="modalContent"></div>
+            <!-- فصل ۴ -->
+            <div class="relative inline-block mt-4">
+                <button class="bg-blue-600 text-white py-2 px-4 rounded-lg hover:bg-blue-500 transition duration-200" onclick="toggleEpisodeLinks(4)">
+                    Season 4
+                </button>
+                <div id="episodeLinks4" class="episode-links mt-2">
+                    <div class="flex flex-wrap justify-center">
+                        <a href="#" class="episode-link" onclick="showModal()">Episode 1</a>
+                        <a href="#" class="episode-link" onclick="showModal()">Episode 2</a>
+                        <a href="#" class="episode-link" onclick="showModal()">Episode 3</a>
+                        <a href="#" class="episode-link" onclick="showModal()">Episode 4</a>
+                        <a href="#" class="episode-link" onclick="showModal()">Episode 5</a>
+                        <a href="#" class="episode-link" onclick="showModal()">Episode 6</a>
+                        <a href="#" class="episode-link" onclick="showModal()">Episode 7</a>
+                        <a href="#" class="episode-link" onclick="showModal()">Episode 8</a>
+                        <a href="#" class="episode-link" onclick="showModal()">Episode 9</a>
+                        <a href="#" class="episode-link" onclick="showModal()">Episode 10</a>
+                        <a href="#" class="episode-link" onclick="showModal()">Episode 11</a>
+                        <a href="#" class="episode-link" onclick="showModal()">Episode 12</a>
+                        <a href="#" class="episode-link" onclick="showModal()">Episode 13</a>
+                        <a href="#" class="episode-link" onclick="showModal()">Episode 14</a>
+                        <a href="#" class="episode-link" onclick="showModal()">Episode 15</a>
+                        <a href="#" class="episode-link" onclick="showModal()">Episode 16</a>
+                        <a href="#" class="episode-link" onclick="showModal()">Episode 17</a>
+                        <a href="#" class="episode-link" onclick="showModal()">Episode 18</a>
+                        <a href="#" class="episode-link" onclick="showModal()">Episode 19</a>
+                        <a href="#" class="episode-link" onclick="showModal()">Episode 20</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- فصل ۵ -->
+            <div class="relative inline-block mt-4">
+                <button class="bg-blue-600 text-white py-2 px-4 rounded-lg hover:bg-blue-500 transition duration-200" onclick="toggleEpisodeLinks(5)">
+                    Season 5
+                </button>
+                <div id="episodeLinks5" class="episode-links mt-2">
+                    <div class="flex flex-wrap justify-center">
+                        <a href="#" class="episode-link" onclick="showModal()">Episode 1</a>
+                        <a href="#" class="episode-link" onclick="showModal()">Episode 2</a>
+                        <a href="#" class="episode-link" onclick="showModal()">Episode 3</a>
+                        <a href="#" class="episode-link" onclick="showModal()">Episode 4</a>
+                        <a href="#" class="episode-link" onclick="showModal()">Episode 5</a>
+                        <a href="#" class="episode-link" onclick="showModal()">Episode 6</a>
+                        <a href="#" class="episode-link" onclick="showModal()">Episode 7</a>
+                        <a href="#" class="episode-link" onclick="showModal()">Episode 8</a>
+                        <a href="#" class="episode-link" onclick="showModal()">Episode 9</a>
+                        <a href="#" class="episode-link" onclick="showModal()">Episode 10</a>
+                        <a href="#" class="episode-link" onclick="showModal()">Episode 11</a>
+                        <a href="#" class="episode-link" onclick="showModal()">Episode 12</a>
+                        <a href="#" class="episode-link" onclick="showModal()">Episode 13</a>
+                        <a href="#" class="episode-link" onclick="showModal()">Episode 14</a>
+                        <a href="#" class="episode-link" onclick="showModal()">Episode 15</a>
+                        <a href="#" class="episode-link" onclick="showModal()">Episode 16</a>
+                        <a href="#" class="episode-link" onclick="showModal()">Episode 17</a>
+                        <a href="#" class="episode-link" onclick="showModal()">Episode 18</a>
+                        <a href="#" class="episode-link" onclick="showModal()">Episode 19</a>
+                        <a href="#" class="episode-link" onclick="showModal()">Episode 20</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- فصل ۶ -->
+            <div class="relative inline-block mt-4">
+                <button class="bg-blue-600 text-white py-2 px-4 rounded-lg hover:bg-blue-500 transition duration-200" onclick="toggleEpisodeLinks(6)">
+                    Season 6
+                </button>
+                <div id="episodeLinks6" class="episode-links mt-2">
+                    <div class="flex flex-wrap justify-center">
+                        <a href="#" class="episode-link" onclick="showModal()">Episode 1</a>
+                        <a href="#" class="episode-link" onclick="showModal()">Episode 2</a>
+                        <a href="#" class="episode-link" onclick="showModal()">Episode 3</a>
+                        <a href="#" class="episode-link" onclick="showModal()">Episode 4</a>
+                        <a href="#" class="episode-link" onclick="showModal()">Episode 5</a>
+                        <a href="#" class="episode-link" onclick="showModal()">Episode 6</a>
+                        <a href="#" class="episode-link" onclick="showModal()">Episode 7</a>
+                        <a href="#" class="episode-link" onclick="showModal()">Episode 8</a>
+                        <a href="#" class="episode-link" onclick="showModal()">Episode 9</a>
+                        <a href="#" class="episode-link" onclick="showModal()">Episode 10</a>
+                        <a href="#" class="episode-link" onclick="showModal()">Episode 11</a>
+                        <a href="#" class="episode-link" onclick="showModal()">Episode 12</a>
+                        <a href="#" class="episode-link" onclick="showModal()">Episode 13</a>
+                        <a href="#" class="episode-link" onclick="showModal()">Episode 14</a>
+                        <a href="#" class="episode-link" onclick="showModal()">Episode 15</a>
+                        <a href="#" class="episode-link" onclick="showModal()">Episode 16</a>
+                        <a href="#" class="episode-link" onclick="showModal()">Episode 17</a>
+                        <a href="#" class="episode-link" onclick="showModal()">Episode 18</a>
+                        <a href="#" class="episode-link" onclick="showModal()">Episode 19</a>
+                        <a href="#" class="episode-link" onclick="showModal()">Episode 20</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- فصل ۷ -->
+            <div class="relative inline-block mt-4">
+                <button class="bg-blue-600 text-white py-2 px-4 rounded-lg hover:bg-blue-500 transition duration-200" onclick="toggleEpisodeLinks(7)">
+                    Season 7
+                </button>
+                <div id="episodeLinks7" class="episode-links mt-2">
+                    <div class="flex flex-wrap justify-center">
+                        <a href="#" class="episode-link" onclick="showModal()">Episode 1</a>
+                        <a href="#" class="episode-link" onclick="showModal()">Episode 2</a>
+                        <a href="#" class="episode-link" onclick="showModal()">Episode 3</a>
+                        <a href="#" class="episode-link" onclick="showModal()">Episode 4</a>
+                        <a href="#" class="episode-link" onclick="showModal()">Episode 5</a>
+                        <a href="#" class="episode-link" onclick="showModal()">Episode 6</a>
+                        <a href="#" class="episode-link" onclick="showModal()">Episode 7</a>
+                        <a href="#" class="episode-link" onclick="showModal()">Episode 8</a>
+                        <a href="#" class="episode-link" onclick="showModal()">Episode 9</a>
+                        <a href="#" class="episode-link" onclick="showModal()">Episode 10</a>
+                        <a href="#" class="episode-link" onclick="showModal()">Episode 11</a>
+                        <a href="#" class="episode-link" onclick="showModal()">Episode 12</a>
+                        <a href="#" class="episode-link" onclick="showModal()">Episode 13</a>
+                        <a href="#" class="episode-link" onclick="showModal()">Episode 14</a>
+                        <a href="#" class="episode-link" onclick="showModal()">Episode 15</a>
+                        <a href="#" class="episode-link" onclick="showModal()">Episode 16</a>
+                        <a href="#" class="episode-link" onclick="showModal()">Episode 17</a>
+                        <a href="#" class="episode-link" onclick="showModal()">Episode 18</a>
+                        <a href="#" class="episode-link" onclick="showModal()">Episode 19</a>
+                        <a href="#" class="episode-link" onclick="showModal()">Episode 20</a>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
-</body>
-</html>
+</main>
+
+<!-- مدال -->
+<div id="episodeModal" class="modal" onclick="closeModal()">
+    <div class="modal-content" onclick="event.stopPropagation()">
+        <h2 class="text-xl font-bold text-white">Download Links</h2>
+        <a href="#" class="modal-button">Download Link</a>
+        <a href="#" class="modal-button">Telegram File</a>
+        <button class="modal-button bg-red-600" onclick="closeModal()">Close</button>
+    </div>
+</div>
