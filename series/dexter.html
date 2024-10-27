@@ -105,6 +105,10 @@
                 telegramLink.href = "#"; // لینک پیش‌فرض برای سایر اپیزودها
             }
 
+            // افزودن ویژگی target="_blank" برای باز شدن در پنجره جدید
+            downloadLink.setAttribute('target', '_blank');
+            telegramLink.setAttribute('target', '_blank');
+
             modal.style.display = 'flex';
         }
 
@@ -148,11 +152,11 @@
                                     <div class="flex flex-wrap justify-center">
                         `);
                         for (let episode = 1; episode <= 20; episode++) {
-                            document.write(`
+                            document.write(`\
                                 <a href="#" class="episode-link" onclick="openModal(${episode})">Episode ${episode}</a>
                             `);
                         }
-                        document.write(`
+                        document.write(`\
                                     </div>
                                 </div>
                             </div>
@@ -165,7 +169,7 @@
 
     <!-- مدال -->
     <div id="episodeModal" class="modal" onclick="closeModal()">
-        <div class="modal-content">
+        <div class="modal-content" onclick="event.stopPropagation()">
             <h2 class="text-xl font-bold text-white">Download Links</h2>
             <a id="downloadLink" href="#" class="modal-button">Download Link</a>
             <a id="telegramLink" href="#" class="modal-button">Telegram File</a>
