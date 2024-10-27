@@ -39,7 +39,7 @@
         }
         .line {
             opacity: 0; /* مخفی کردن خط در ابتدا */
-            animation: typing 3s steps(30, end) forwards, fadeIn 0.5s forwards; /* انیمیشن تایپی و نمایش */
+            animation: typing 3s steps(30, end) forwards; /* انیمیشن تایپی */
             display: inline-block; /* برای انیمیشن خط به خط */
             margin-bottom: 0.5em; /* فاصله بین خطوط */
         }
@@ -47,10 +47,6 @@
         @keyframes typing {
             from { width: 0; }
             to { width: 100%; }
-        }
-        @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
         }
 
         /* استایل مدال */
@@ -122,7 +118,8 @@
                 // انیمیشن تایپ برای هر خط
                 setTimeout(() => {
                     lineElement.style.opacity = '1'; // نمایان کردن خط
-                }, index * 3500); // زمان تاخیر برای هر خط
+                    lineElement.style.animation = `typing ${line.length * 0.1}s steps(${line.length}, end) forwards`; // تنظیم انیمیشن بر اساس طول متن
+                }, index * 4000); // زمان تاخیر برای شروع خط جدید (زمان بین خط‌ها)
             });
         }
 
