@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>supernatural - Series Page</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <style>
+        body { display: none; }
+        .fade-in { opacity: 0; animation: fadeIn 1s ease forwards; }
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+        .animate-zoom:hover { transform: scale(1.05); transition: transform 0.3s ease-in-out; }
+        .episode-links { max-height: 0; overflow: hidden; opacity: 0; transition: max-height 0.5s ease, opacity 0.5s ease; }
+        .show-links { max-height: 500px; opacity: 1; }
+        .episode-link {
+            display: inline-block;
+            padding: 4px 8px;
+            margin: 4px;
+            background-color: #3B82F6;
+            color: white;
+            border-radius: 0.375rem;
+            text-align: center;
+            width: 60px;
+            font-size: 0.75rem;
+            transition: background-color 0.2s, transform 0.2s;
+        }
+        .episode-link:hover {
+            background-color: #2563EB;
+            transform: scale(1.05);
+        }
+
+        /* استایل مدال */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 50;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            align-items: center;
+            justify-content: center;
+            animation: fadeIn 0.5s ease;
+        }
+        .modal-content {
+            background-color: #1f2937;
+            padding: 20px;
+            border-radius: 8px;
+            width: 90%;
+            max-width: 400px;
+            text-align: center;
+            animation: slideIn 0.5s ease;
+        }
+        @keyframes slideIn {
+            from { transform: translateY(-50px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+        .modal-button {
+            background-color: #3B82F6;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 4px;
+            margin-top: 10px;
+            display: inline-block;
+            text-decoration: none;
+            transition: background-color 0.3s;
+        }
+        .modal-button:hover {
+            background-color: #2563EB;
+        }
+    </style>
+    <script>
+        window.onload = function() {
+            const isLoggedIn = localStorage.getItem('isLoggedIn');
+            if (isLoggedIn === 'true') {
+                document.body.style.display = 'block';
+            } else {
+                window.location.href = '../login.html';
+            }
+        }
+
+        function toggleEpisodeLinks(season) {
+            const links = document.getElementById(`episodeLinks${season}`);
+            links.classList.toggle('show-links');
+            if (links.classList.contains('show-links')) {
+                links.scrollIntoView({ behavior: 'smooth' });
+            }
+        }
+
+        function openModal(episode) {
+            const modal = document.getElementById('episodeModal');
+            const downloadLink = document.getElementById('downloadLink');
+            const telegramLink = document.getElementById('telegramLink');
+
+            // تغییر لینک‌ها برای اپیزود اول فصل اول و فصل دوم
+            if (episode === 1 && currentSeason === 1) {
+                downloadLink.href = "https://exampl.com"; // لینک دانلود اپیزود 1 فصل 1
+                telegramLink.href = "https://t.me/ll"; // لینک تلگرام اپیزود 1 فصل 1
+            } else if (episode === 1 && currentSeason === 2) {
+                downloadLink.href = "https://gig.com"; // لینک دانلود اپیزود 1 فصل 2
+                telegramLink.href = "https://kas.org"; // لینک تلگرام اپیزود 1 فصل 2
+            } else {
+                downloadLink.href = "#"; // لینک پیش‌فرض برای سایر اپیزودها
+                telegramLink.href = "#"; // لینک پیش‌فرض برای سایر اپیزودها
+            }
+
+            // افزودن ویژگی target="_blank" برای باز شدن در پنجره جدید
+            downloadLink.setAttribute('target', '_blank');
+            telegramLink.setAttribute('target', '_blank');
+
+            modal.style.display = 'flex';
+        }
+
+        function closeModal() {
+            document.getElementById('episodeModal').style.display = 'none';
+        }
+
+        let currentSeason; // متغیر برای ذخیره شماره فصل فعلی
+
+    </script> 
+</head>
+<body class="bg-gray-900 text-white fade-in">
+    <header class="bg-gray-800 p-4 fade-in relative">
+        <a href="../index.html" class="absolute top-4 left-4 inline-block bg-blue-600 text-white py-1 px-2 rounded-lg shadow-md text-sm hover:bg-blue-500 hover:scale-105 transition duration-300 ease-in-out">Home</a>
+        <h1 class="text-4xl font-bold text-center hover:text-red-500 transition-colors duration-300">supernatural</h1>
+    </header>
+
+    <main class="container mx-auto px-4 py-8 relative">
+        <div class="text-center fade-in">
+            <img src="https://i.ibb.co/1JqZymT/supernatural-castiel-dean-and-sam-fi61lb0dkhpwdt4j.webp" alt="supernatural" class="w-64 h-auto mx-auto mb-4 rounded-lg animate-zoom shadow-lg">
+            <p class="text-lg max-w-lg mx-auto mt-4 text-gray-300 leading-relaxed">
+                دو برادر به دنبال پدر گمشده شان هستند، مردی که آنها را بزرگ کرده و به آن دو آموزش داده که چگونه در مقابل نیروهای ماورای طبیعی بجنگند....
+            </p>
+            <div class="mt-4">
+                <p class="text-gray-300">IMDb Rating: <span class="font-bold">8.6/10</span></p>
+                <p class="text-gray-300">Rotten Tomatoes: <span class="font-bold">91%</span></p>
+            </div>
+
+            <!-- فصل‌ها -->
+            <div class="mt-6 space-y-4">
+                <!-- حلقه برای فصول -->
+                <script>
+                    for (let season = 1; season <= 7; season++) {
+                        document.write(`
+                            <div class="relative inline-block mt-4">
+                                <button class="bg-blue-600 text-white py-2 px-4 rounded-lg hover:bg-blue-500 transition duration-200" onclick="toggleEpisodeLinks(${season}); currentSeason=${season}">
+                                    Season ${season}
+                                </button>
+                                <div id="episodeLinks${season}" class="episode-links mt-2">
+                                    <div class="flex flex-wrap justify-center">
+                        `);
+                        for (let episode = 1; episode <= 20; episode++) {
+                            document.write(`\
+                                <a href="#" class="episode-link" onclick="openModal(${episode})">Episode ${episode}</a>
+                            `);
+                        }
+                        document.write(`\
+                                    </div>
+                                </div>
+                            </div>
+                        `);
+                    }
+                </script>
+            </div>
+        </div>
+    </main>
+
+    <!-- مدال -->
+    <div id="episodeModal" class="modal" onclick="closeModal()">
+        <div class="modal-content" onclick="event.stopPropagation()">
+            <h2 class="text-xl font-bold text-white">Download Links</h2>
+            <a id="downloadLink" href="#" class="modal-button">Download Link</a>
+            <a id="telegramLink" href="#" class="modal-button">Telegram File</a>
+            <button class="modal-button bg-red-600" onclick="closeModal()">Close</button>
+        </div>
+    </div>
+</body>
+</html>
