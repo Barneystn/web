@@ -101,6 +101,13 @@
                 downloadLink.href = "#"; // لینک پیش‌فرض برای سایر اپیزودها
                 telegramLink.href = "#"; // لینک پیش‌فرض برای سایر اپیزودها
             }
+            if (episode === 1 && currentSeason === 2) {
+                downloadLink.href = "https://fgfg.com"; // لینک دانلود اپیزود 1
+                telegramLink.href = "https://tlkk.me/ll"; // لینک تلگرام اپیزود 1
+            } else {
+                downloadLink.href = "#"; // لینک پیش‌فرض برای سایر اپیزودها
+                telegramLink.href = "#"; // لینک پیش‌فرض برای سایر اپیزودها
+            }
 
             modal.style.display = 'flex';
         }
