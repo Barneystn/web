@@ -32,11 +32,12 @@
         /* استایل انیمیشن تایپی */
         .typing {
             font-family: 'Courier New', Courier, monospace; /* فونت تایپی */
-            white-space: nowrap; /* جلوگیری از شکست خط */
+            white-space: normal; /* اجازه شکستن خط */
             overflow: hidden; /* مخفی کردن متون اضافی */
             width: 0; /* عرض اولیه */
             animation: typing 5s steps(30, end), blink 0.75s step-end infinite; /* انیمیشن تایپی و چشمک زدن */
             direction: rtl; /* از راست به چپ */
+            display: inline-block; /* برای جلوگیری از مشکلات در اندازه‌گیری عرض */
         }
         @keyframes typing {
             from { width: 0; }
