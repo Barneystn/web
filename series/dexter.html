@@ -21,49 +21,41 @@
             border-radius: 0.375rem;
             text-align: center;
             width: 60px;
-            font-size: 0.75rem;
+            font-size: 0.75rem; /* اندازه فونت کوچک‌تر */
             transition: background-color 0.2s, transform 0.2s;
         }
         .episode-link:hover {
             background-color: #2563EB;
             transform: scale(1.05);
         }
-
-        /* استایل مدال */
         .modal {
-            display: none;
-            position: fixed;
-            z-index: 50;
-            left: 0;
-            top: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0, 0, 0, 0.5);
-            align-items: center;
-            justify-content: center;
+            display: none; 
+            position: fixed; 
+            z-index: 10; 
+            left: 0; top: 0; 
+            width: 100%; height: 100%; 
+            overflow: auto; 
+            background-color: rgba(0, 0, 0, 0.7); 
+            padding-top: 60px;
         }
         .modal-content {
-            background-color: #1f2937;
-            padding: 20px;
-            border-radius: 8px;
-            width: 90%;
-            max-width: 400px;
-            text-align: center;
-            animation: slideIn 0.5s ease;
-        }
-        @keyframes slideIn {
-            from { transform: translateY(-50px); opacity: 0; }
-            to { transform: translateY(0); opacity: 1; }
+            background-color: #2d3748; 
+            margin: 5% auto; 
+            padding: 20px; 
+            border: 1px solid #888; 
+            width: 80%; 
+            max-width: 400px; 
+            border-radius: 0.375rem;
         }
         .modal-button {
-            background-color: #3B82F6;
-            color: white;
-            padding: 10px 20px;
-            border-radius: 4px;
+            display: block;
             margin-top: 10px;
-            display: inline-block;
-            text-decoration: none;
-            transition: background-color 0.3s;
+            padding: 8px;
+            background-color: #3B82F6; 
+            color: white; 
+            text-align: center; 
+            border-radius: 0.375rem; 
+            transition: background-color 0.2s;
         }
         .modal-button:hover {
             background-color: #2563EB;
@@ -87,12 +79,21 @@
             }
         }
 
-        function openModal() {
-            document.getElementById('episodeModal').style.display = 'flex';
+        function openModal(episodeNumber) {
+            const modal = document.getElementById("episodeModal");
+            modal.style.display = "block";
+            const modalContent = document.getElementById("modalContent");
+            modalContent.innerHTML = `
+                <h2 class="text-lg font-bold">Episode ${episodeNumber} Download</h2>
+                <p class="mt-2 text-gray-400">Download link for Episode ${episodeNumber}</p>
+                <p class="mt-2 text-gray-400">Telegram File: <a href="#" class="text-blue-400">Click Here</a></p>
+                <a href="#" class="modal-button" onclick="closeModal()">Close</a>
+            `;
         }
 
         function closeModal() {
-            document.getElementById('episodeModal').style.display = 'none';
+            const modal = document.getElementById("episodeModal");
+            modal.style.display = "none";
         }
     </script> 
 </head>
@@ -123,26 +124,26 @@
                     </button>
                     <div id="episodeLinks1" class="episode-links mt-2">
                         <div class="flex flex-wrap justify-center">
-                            <a href="#" class="episode-link" onclick="openModal()">Episode 1</a>
-                            <a href="#" class="episode-link" onclick="openModal()">Episode 2</a>
-                            <a href="#" class="episode-link" onclick="openModal()">Episode 3</a>
-                            <a href="#" class="episode-link" onclick="openModal()">Episode 4</a>
-                            <a href="#" class="episode-link" onclick="openModal()">Episode 5</a>
-                            <a href="#" class="episode-link" onclick="openModal()">Episode 6</a>
-                            <a href="#" class="episode-link" onclick="openModal()">Episode 7</a>
-                            <a href="#" class="episode-link" onclick="openModal()">Episode 8</a>
-                            <a href="#" class="episode-link" onclick="openModal()">Episode 9</a>
-                            <a href="#" class="episode-link" onclick="openModal()">Episode 10</a>
-                            <a href="#" class="episode-link" onclick="openModal()">Episode 11</a>
-                            <a href="#" class="episode-link" onclick="openModal()">Episode 12</a>
-                            <a href="#" class="episode-link" onclick="openModal()">Episode 13</a>
-                            <a href="#" class="episode-link" onclick="openModal()">Episode 14</a>
-                            <a href="#" class="episode-link" onclick="openModal()">Episode 15</a>
-                            <a href="#" class="episode-link" onclick="openModal()">Episode 16</a>
-                            <a href="#" class="episode-link" onclick="openModal()">Episode 17</a>
-                            <a href="#" class="episode-link" onclick="openModal()">Episode 18</a>
-                            <a href="#" class="episode-link" onclick="openModal()">Episode 19</a>
-                            <a href="#" class="episode-link" onclick="openModal()">Episode 20</a>
+                            <a href="#" class="episode-link" onclick="openModal(1)">Episode 1</a>
+                            <a href="#" class="episode-link" onclick="openModal(2)">Episode 2</a>
+                            <a href="#" class="episode-link" onclick="openModal(3)">Episode 3</a>
+                            <a href="#" class="episode-link" onclick="openModal(4)">Episode 4</a>
+                            <a href="#" class="episode-link" onclick="openModal(5)">Episode 5</a>
+                            <a href="#" class="episode-link" onclick="openModal(6)">Episode 6</a>
+                            <a href="#" class="episode-link" onclick="openModal(7)">Episode 7</a>
+                            <a href="#" class="episode-link" onclick="openModal(8)">Episode 8</a>
+                            <a href="#" class="episode-link" onclick="openModal(9)">Episode 9</a>
+                            <a href="#" class="episode-link" onclick="openModal(10)">Episode 10</a>
+                            <a href="#" class="episode-link" onclick="openModal(11)">Episode 11</a>
+                            <a href="#" class="episode-link" onclick="openModal(12)">Episode 12</a>
+                            <a href="#" class="episode-link" onclick="openModal(13)">Episode 13</a>
+                            <a href="#" class="episode-link" onclick="openModal(14)">Episode 14</a>
+                            <a href="#" class="episode-link" onclick="openModal(15)">Episode 15</a>
+                            <a href="#" class="episode-link" onclick="openModal(16)">Episode 16</a>
+                            <a href="#" class="episode-link" onclick="openModal(17)">Episode 17</a>
+                            <a href="#" class="episode-link" onclick="openModal(18)">Episode 18</a>
+                            <a href="#" class="episode-link" onclick="openModal(19)">Episode 19</a>
+                            <a href="#" class="episode-link" onclick="openModal(20)">Episode 20</a>
                         </div>
                     </div>
                 </div>
@@ -154,26 +155,26 @@
                     </button>
                     <div id="episodeLinks2" class="episode-links mt-2">
                         <div class="flex flex-wrap justify-center">
-                            <a href="#" class="episode-link" onclick="openModal()">Episode 1</a>
-                            <a href="#" class="episode-link" onclick="openModal()">Episode 2</a>
-                            <a href="#" class="episode-link" onclick="openModal()">Episode 3</a>
-                            <a href="#" class="episode-link" onclick="openModal()">Episode 4</a>
-                            <a href="#" class="episode-link" onclick="openModal()">Episode 5</a>
-                            <a href="#" class="episode-link" onclick="openModal()">Episode 6</a>
-                            <a href="#" class="episode-link" onclick="openModal()">Episode 7</a>
-                            <a href="#" class="episode-link" onclick="openModal()">Episode 8</a>
-                            <a href="#" class="episode-link" onclick="openModal()">Episode 9</a>
-                            <a href="#" class="episode-link" onclick="openModal()">Episode 10</a>
-                            <a href="#" class="episode-link" onclick="openModal()">Episode 11</a>
-                            <a href="#" class="episode-link" onclick="openModal()">Episode 12</a>
-                            <a href="#" class="episode-link" onclick="openModal()">Episode 13</a>
-                            <a href="#" class="episode-link" onclick="openModal()">Episode 14</a>
-                            <a href="#" class="episode-link" onclick="openModal()">Episode 15</a>
-                            <a href="#" class="episode-link" onclick="openModal()">Episode 16</a>
-                            <a href="#" class="episode-link" onclick="openModal()">Episode 17</a>
-                            <a href="#" class="episode-link" onclick="openModal()">Episode 18</a>
-                            <a href="#" class="episode-link" onclick="openModal()">Episode 19</a>
-                            <a href="#" class="episode-link" onclick="openModal()">Episode 20</a>
+                            <a href="#" class="episode-link" onclick="openModal(1)">Episode 1</a>
+                            <a href="#" class="episode-link" onclick="openModal(2)">Episode 2</a>
+                            <a href="#" class="episode-link" onclick="openModal(3)">Episode 3</a>
+                            <a href="#" class="episode-link" onclick="openModal(4)">Episode 4</a>
+                            <a href="#" class="episode-link" onclick="openModal(5)">Episode 5</a>
+                            <a href="#" class="episode-link" onclick="openModal(6)">Episode 6</a>
+                            <a href="#" class="episode-link" onclick="openModal(7)">Episode 7</a>
+                            <a href="#" class="episode-link" onclick="openModal(8)">Episode 8</a>
+                            <a href="#" class="episode-link" onclick="openModal(9)">Episode 9</a>
+                            <a href="#" class="episode-link" onclick="openModal(10)">Episode 10</a>
+                            <a href="#" class="episode-link" onclick="openModal(11)">Episode 11</a>
+                            <a href="#" class="episode-link" onclick="openModal(12)">Episode 12</a>
+                            <a href="#" class="episode-link" onclick="openModal(13)">Episode 13</a>
+                            <a href="#" class="episode-link" onclick="openModal(14)">Episode 14</a>
+                            <a href="#" class="episode-link" onclick="openModal(15)">Episode 15</a>
+                            <a href="#" class="episode-link" onclick="openModal(16)">Episode 16</a>
+                            <a href="#" class="episode-link" onclick="openModal(17)">Episode 17</a>
+                            <a href="#" class="episode-link" onclick="openModal(18)">Episode 18</a>
+                            <a href="#" class="episode-link" onclick="openModal(19)">Episode 19</a>
+                            <a href="#" class="episode-link" onclick="openModal(20)">Episode 20</a>
                         </div>
                     </div>
                 </div>
@@ -185,26 +186,26 @@
                     </button>
                     <div id="episodeLinks3" class="episode-links mt-2">
                         <div class="flex flex-wrap justify-center">
-                            <a href="#" class="episode-link" onclick="openModal()">Episode 1</a>
-                            <a href="#" class="episode-link" onclick="openModal()">Episode 2</a>
-                            <a href="#" class="episode-link" onclick="openModal()">Episode 3</a>
-                            <a href="#" class="episode-link" onclick="openModal()">Episode 4</a>
-                            <a href="#" class="episode-link" onclick="openModal()">Episode 5</a>
-                            <a href="#" class="episode-link" onclick="openModal()">Episode 6</a>
-                            <a href="#" class="episode-link" onclick="openModal()">Episode 7</a>
-                            <a href="#" class="episode-link" onclick="openModal()">Episode 8</a>
-                            <a href="#" class="episode-link" onclick="openModal()">Episode 9</a>
-                            <a href="#" class="episode-link" onclick="openModal()">Episode 10</a>
-                            <a href="#" class="episode-link" onclick="openModal()">Episode 11</a>
-                            <a href="#" class="episode-link" onclick="openModal()">Episode 12</a>
-                            <a href="#" class="episode-link" onclick="openModal()">Episode 13</a>
-                            <a href="#" class="episode-link" onclick="openModal()">Episode 14</a>
-                            <a href="#" class="episode-link" onclick="openModal()">Episode 15</a>
-                            <a href="#" class="episode-link" onclick="openModal()">Episode 16</a>
-                            <a href="#" class="episode-link" onclick="openModal()">Episode 17</a>
-                            <a href="#" class="episode-link" onclick="openModal()">Episode 18</a>
-                            <a href="#" class="episode-link" onclick="openModal()">Episode 19</a>
-                            <a href="#" class="episode-link" onclick="openModal()">Episode 20</a>
+                            <a href="#" class="episode-link" onclick="openModal(1)">Episode 1</a>
+                            <a href="#" class="episode-link" onclick="openModal(2)">Episode 2</a>
+                            <a href="#" class="episode-link" onclick="openModal(3)">Episode 3</a>
+                            <a href="#" class="episode-link" onclick="openModal(4)">Episode 4</a>
+                            <a href="#" class="episode-link" onclick="openModal(5)">Episode 5</a>
+                            <a href="#" class="episode-link" onclick="openModal(6)">Episode 6</a>
+                            <a href="#" class="episode-link" onclick="openModal(7)">Episode 7</a>
+                            <a href="#" class="episode-link" onclick="openModal(8)">Episode 8</a>
+                            <a href="#" class="episode-link" onclick="openModal(9)">Episode 9</a>
+                            <a href="#" class="episode-link" onclick="openModal(10)">Episode 10</a>
+                            <a href="#" class="episode-link" onclick="openModal(11)">Episode 11</a>
+                            <a href="#" class="episode-link" onclick="openModal(12)">Episode 12</a>
+                            <a href="#" class="episode-link" onclick="openModal(13)">Episode 13</a>
+                            <a href="#" class="episode-link" onclick="openModal(14)">Episode 14</a>
+                            <a href="#" class="episode-link" onclick="openModal(15)">Episode 15</a>
+                            <a href="#" class="episode-link" onclick="openModal(16)">Episode 16</a>
+                            <a href="#" class="episode-link" onclick="openModal(17)">Episode 17</a>
+                            <a href="#" class="episode-link" onclick="openModal(18)">Episode 18</a>
+                            <a href="#" class="episode-link" onclick="openModal(19)">Episode 19</a>
+                            <a href="#" class="episode-link" onclick="openModal(20)">Episode 20</a>
                         </div>
                     </div>
                 </div>
@@ -216,26 +217,26 @@
                     </button>
                     <div id="episodeLinks4" class="episode-links mt-2">
                         <div class="flex flex-wrap justify-center">
-                            <a href="#" class="episode-link" onclick="openModal()">Episode 1</a>
-                            <a href="#" class="episode-link" onclick="openModal()">Episode 2</a>
-                            <a href="#" class="episode-link" onclick="openModal()">Episode 3</a>
-                            <a href="#" class="episode-link" onclick="openModal()">Episode 4</a>
-                            <a href="#" class="episode-link" onclick="openModal()">Episode 5</a>
-                            <a href="#" class="episode-link" onclick="openModal()">Episode 6</a>
-                            <a href="#" class="episode-link" onclick="openModal()">Episode 7</a>
-                            <a href="#" class="episode-link" onclick="openModal()">Episode 8</a>
-                            <a href="#" class="episode-link" onclick="openModal()">Episode 9</a>
-                            <a href="#" class="episode-link" onclick="openModal()">Episode 10</a>
-                            <a href="#" class="episode-link" onclick="openModal()">Episode 11</a>
-                            <a href="#" class="episode-link" onclick="openModal()">Episode 12</a>
-                            <a href="#" class="episode-link" onclick="openModal()">Episode 13</a>
-                            <a href="#" class="episode-link" onclick="openModal()">Episode 14</a>
-                            <a href="#" class="episode-link" onclick="openModal()">Episode 15</a>
-                            <a href="#" class="episode-link" onclick="openModal()">Episode 16</a>
-                            <a href="#" class="episode-link" onclick="openModal()">Episode 17</a>
-                            <a href="#" class="episode-link" onclick="openModal()">Episode 18</a>
-                            <a href="#" class="episode-link" onclick="openModal()">Episode 19</a>
-                            <a href="#" class="episode-link" onclick="openModal()">Episode 20</a>
+                            <a href="#" class="episode-link" onclick="openModal(1)">Episode 1</a>
+                            <a href="#" class="episode-link" onclick="openModal(2)">Episode 2</a>
+                            <a href="#" class="episode-link" onclick="openModal(3)">Episode 3</a>
+                            <a href="#" class="episode-link" onclick="openModal(4)">Episode 4</a>
+                            <a href="#" class="episode-link" onclick="openModal(5)">Episode 5</a>
+                            <a href="#" class="episode-link" onclick="openModal(6)">Episode 6</a>
+                            <a href="#" class="episode-link" onclick="openModal(7)">Episode 7</a>
+                            <a href="#" class="episode-link" onclick="openModal(8)">Episode 8</a>
+                            <a href="#" class="episode-link" onclick="openModal(9)">Episode 9</a>
+                            <a href="#" class="episode-link" onclick="openModal(10)">Episode 10</a>
+                            <a href="#" class="episode-link" onclick="openModal(11)">Episode 11</a>
+                            <a href="#" class="episode-link" onclick="openModal(12)">Episode 12</a>
+                            <a href="#" class="episode-link" onclick="openModal(13)">Episode 13</a>
+                            <a href="#" class="episode-link" onclick="openModal(14)">Episode 14</a>
+                            <a href="#" class="episode-link" onclick="openModal(15)">Episode 15</a>
+                            <a href="#" class="episode-link" onclick="openModal(16)">Episode 16</a>
+                            <a href="#" class="episode-link" onclick="openModal(17)">Episode 17</a>
+                            <a href="#" class="episode-link" onclick="openModal(18)">Episode 18</a>
+                            <a href="#" class="episode-link" onclick="openModal(19)">Episode 19</a>
+                            <a href="#" class="episode-link" onclick="openModal(20)">Episode 20</a>
                         </div>
                     </div>
                 </div>
@@ -247,26 +248,26 @@
                     </button>
                     <div id="episodeLinks5" class="episode-links mt-2">
                         <div class="flex flex-wrap justify-center">
-                            <a href="#" class="episode-link" onclick="openModal()">Episode 1</a>
-                            <a href="#" class="episode-link" onclick="openModal()">Episode 2</a>
-                            <a href="#" class="episode-link" onclick="openModal()">Episode 3</a>
-                            <a href="#" class="episode-link" onclick="openModal()">Episode 4</a>
-                            <a href="#" class="episode-link" onclick="openModal()">Episode 5</a>
-                            <a href="#" class="episode-link" onclick="openModal()">Episode 6</a>
-                            <a href="#" class="episode-link" onclick="openModal()">Episode 7</a>
-                            <a href="#" class="episode-link" onclick="openModal()">Episode 8</a>
-                            <a href="#" class="episode-link" onclick="openModal()">Episode 9</a>
-                            <a href="#" class="episode-link" onclick="openModal()">Episode 10</a>
-                            <a href="#" class="episode-link" onclick="openModal()">Episode 11</a>
-                            <a href="#" class="episode-link" onclick="openModal()">Episode 12</a>
-                            <a href="#" class="episode-link" onclick="openModal()">Episode 13</a>
-                            <a href="#" class="episode-link" onclick="openModal()">Episode 14</a>
-                            <a href="#" class="episode-link" onclick="openModal()">Episode 15</a>
-                            <a href="#" class="episode-link" onclick="openModal()">Episode 16</a>
-                            <a href="#" class="episode-link" onclick="openModal()">Episode 17</a>
-                            <a href="#" class="episode-link" onclick="openModal()">Episode 18</a>
-                            <a href="#" class="episode-link" onclick="openModal()">Episode 19</a>
-                            <a href="#" class="episode-link" onclick="openModal()">Episode 20</a>
+                            <a href="#" class="episode-link" onclick="openModal(1)">Episode 1</a>
+                            <a href="#" class="episode-link" onclick="openModal(2)">Episode 2</a>
+                            <a href="#" class="episode-link" onclick="openModal(3)">Episode 3</a>
+                            <a href="#" class="episode-link" onclick="openModal(4)">Episode 4</a>
+                            <a href="#" class="episode-link" onclick="openModal(5)">Episode 5</a>
+                            <a href="#" class="episode-link" onclick="openModal(6)">Episode 6</a>
+                            <a href="#" class="episode-link" onclick="openModal(7)">Episode 7</a>
+                            <a href="#" class="episode-link" onclick="openModal(8)">Episode 8</a>
+                            <a href="#" class="episode-link" onclick="openModal(9)">Episode 9</a>
+                            <a href="#" class="episode-link" onclick="openModal(10)">Episode 10</a>
+                            <a href="#" class="episode-link" onclick="openModal(11)">Episode 11</a>
+                            <a href="#" class="episode-link" onclick="openModal(12)">Episode 12</a>
+                            <a href="#" class="episode-link" onclick="openModal(13)">Episode 13</a>
+                            <a href="#" class="episode-link" onclick="openModal(14)">Episode 14</a>
+                            <a href="#" class="episode-link" onclick="openModal(15)">Episode 15</a>
+                            <a href="#" class="episode-link" onclick="openModal(16)">Episode 16</a>
+                            <a href="#" class="episode-link" onclick="openModal(17)">Episode 17</a>
+                            <a href="#" class="episode-link" onclick="openModal(18)">Episode 18</a>
+                            <a href="#" class="episode-link" onclick="openModal(19)">Episode 19</a>
+                            <a href="#" class="episode-link" onclick="openModal(20)">Episode 20</a>
                         </div>
                     </div>
                 </div>
@@ -278,26 +279,26 @@
                     </button>
                     <div id="episodeLinks6" class="episode-links mt-2">
                         <div class="flex flex-wrap justify-center">
-                            <a href="#" class="episode-link" onclick="openModal()">Episode 1</a>
-                            <a href="#" class="episode-link" onclick="openModal()">Episode 2</a>
-                            <a href="#" class="episode-link" onclick="openModal()">Episode 3</a>
-                            <a href="#" class="episode-link" onclick="openModal()">Episode 4</a>
-                            <a href="#" class="episode-link" onclick="openModal()">Episode 5</a>
-                            <a href="#" class="episode-link" onclick="openModal()">Episode 6</a>
-                            <a href="#" class="episode-link" onclick="openModal()">Episode 7</a>
-                            <a href="#" class="episode-link" onclick="openModal()">Episode 8</a>
-                            <a href="#" class="episode-link" onclick="openModal()">Episode 9</a>
-                            <a href="#" class="episode-link" onclick="openModal()">Episode 10</a>
-                            <a href="#" class="episode-link" onclick="openModal()">Episode 11</a>
-                            <a href="#" class="episode-link" onclick="openModal()">Episode 12</a>
-                            <a href="#" class="episode-link" onclick="openModal()">Episode 13</a>
-                            <a href="#" class="episode-link" onclick="openModal()">Episode 14</a>
-                            <a href="#" class="episode-link" onclick="openModal()">Episode 15</a>
-                            <a href="#" class="episode-link" onclick="openModal()">Episode 16</a>
-                            <a href="#" class="episode-link" onclick="openModal()">Episode 17</a>
-                            <a href="#" class="episode-link" onclick="openModal()">Episode 18</a>
-                            <a href="#" class="episode-link" onclick="openModal()">Episode 19</a>
-                            <a href="#" class="episode-link" onclick="openModal()">Episode 20</a>
+                            <a href="#" class="episode-link" onclick="openModal(1)">Episode 1</a>
+                            <a href="#" class="episode-link" onclick="openModal(2)">Episode 2</a>
+                            <a href="#" class="episode-link" onclick="openModal(3)">Episode 3</a>
+                            <a href="#" class="episode-link" onclick="openModal(4)">Episode 4</a>
+                            <a href="#" class="episode-link" onclick="openModal(5)">Episode 5</a>
+                            <a href="#" class="episode-link" onclick="openModal(6)">Episode 6</a>
+                            <a href="#" class="episode-link" onclick="openModal(7)">Episode 7</a>
+                            <a href="#" class="episode-link" onclick="openModal(8)">Episode 8</a>
+                            <a href="#" class="episode-link" onclick="openModal(9)">Episode 9</a>
+                            <a href="#" class="episode-link" onclick="openModal(10)">Episode 10</a>
+                            <a href="#" class="episode-link" onclick="openModal(11)">Episode 11</a>
+                            <a href="#" class="episode-link" onclick="openModal(12)">Episode 12</a>
+                            <a href="#" class="episode-link" onclick="openModal(13)">Episode 13</a>
+                            <a href="#" class="episode-link" onclick="openModal(14)">Episode 14</a>
+                            <a href="#" class="episode-link" onclick="openModal(15)">Episode 15</a>
+                            <a href="#" class="episode-link" onclick="openModal(16)">Episode 16</a>
+                            <a href="#" class="episode-link" onclick="openModal(17)">Episode 17</a>
+                            <a href="#" class="episode-link" onclick="openModal(18)">Episode 18</a>
+                            <a href="#" class="episode-link" onclick="openModal(19)">Episode 19</a>
+                            <a href="#" class="episode-link" onclick="openModal(20)">Episode 20</a>
                         </div>
                     </div>
                 </div>
@@ -309,26 +310,26 @@
                     </button>
                     <div id="episodeLinks7" class="episode-links mt-2">
                         <div class="flex flex-wrap justify-center">
-                            <a href="#" class="episode-link" onclick="openModal()">Episode 1</a>
-                            <a href="#" class="episode-link" onclick="openModal()">Episode 2</a>
-                            <a href="#" class="episode-link" onclick="openModal()">Episode 3</a>
-                            <a href="#" class="episode-link" onclick="openModal()">Episode 4</a>
-                            <a href="#" class="episode-link" onclick="openModal()">Episode 5</a>
-                            <a href="#" class="episode-link" onclick="openModal()">Episode 6</a>
-                            <a href="#" class="episode-link" onclick="openModal()">Episode 7</a>
-                            <a href="#" class="episode-link" onclick="openModal()">Episode 8</a>
-                            <a href="#" class="episode-link" onclick="openModal()">Episode 9</a>
-                            <a href="#" class="episode-link" onclick="openModal()">Episode 10</a>
-                            <a href="#" class="episode-link" onclick="openModal()">Episode 11</a>
-                            <a href="#" class="episode-link" onclick="openModal()">Episode 12</a>
-                            <a href="#" class="episode-link" onclick="openModal()">Episode 13</a>
-                            <a href="#" class="episode-link" onclick="openModal()">Episode 14</a>
-                            <a href="#" class="episode-link" onclick="openModal()">Episode 15</a>
-                            <a href="#" class="episode-link" onclick="openModal()">Episode 16</a>
-                            <a href="#" class="episode-link" onclick="openModal()">Episode 17</a>
-                            <a href="#" class="episode-link" onclick="openModal()">Episode 18</a>
-                            <a href="#" class="episode-link" onclick="openModal()">Episode 19</a>
-                            <a href="#" class="episode-link" onclick="openModal()">Episode 20</a>
+                            <a href="#" class="episode-link" onclick="openModal(1)">Episode 1</a>
+                            <a href="#" class="episode-link" onclick="openModal(2)">Episode 2</a>
+                            <a href="#" class="episode-link" onclick="openModal(3)">Episode 3</a>
+                            <a href="#" class="episode-link" onclick="openModal(4)">Episode 4</a>
+                            <a href="#" class="episode-link" onclick="openModal(5)">Episode 5</a>
+                            <a href="#" class="episode-link" onclick="openModal(6)">Episode 6</a>
+                            <a href="#" class="episode-link" onclick="openModal(7)">Episode 7</a>
+                            <a href="#" class="episode-link" onclick="openModal(8)">Episode 8</a>
+                            <a href="#" class="episode-link" onclick="openModal(9)">Episode 9</a>
+                            <a href="#" class="episode-link" onclick="openModal(10)">Episode 10</a>
+                            <a href="#" class="episode-link" onclick="openModal(11)">Episode 11</a>
+                            <a href="#" class="episode-link" onclick="openModal(12)">Episode 12</a>
+                            <a href="#" class="episode-link" onclick="openModal(13)">Episode 13</a>
+                            <a href="#" class="episode-link" onclick="openModal(14)">Episode 14</a>
+                            <a href="#" class="episode-link" onclick="openModal(15)">Episode 15</a>
+                            <a href="#" class="episode-link" onclick="openModal(16)">Episode 16</a>
+                            <a href="#" class="episode-link" onclick="openModal(17)">Episode 17</a>
+                            <a href="#" class="episode-link" onclick="openModal(18)">Episode 18</a>
+                            <a href="#" class="episode-link" onclick="openModal(19)">Episode 19</a>
+                            <a href="#" class="episode-link" onclick="openModal(20)">Episode 20</a>
                         </div>
                     </div>
                 </div>
@@ -336,12 +337,11 @@
         </div>
     </main>
 
-    <!-- مدال -->
-    <div id="episodeModal" class="modal" onclick="closeModal()">
-        <div class="modal-content" onclick="event.stopPropagation();">
-            <h2 class="text-lg font-bold">Episode Details</h2>
-            <p class="mt-2 text-gray-400">More information about the episode will be displayed here.</p>
-            <a href="#" class="modal-button" onclick="closeModal()">Close</a>
+    <!-- Modal -->
+    <div id="episodeModal" class="modal">
+        <div class="modal-content">
+            <span class="text-gray-300 cursor-pointer" onclick="closeModal()">&times;</span>
+            <div id="modalContent"></div>
         </div>
     </div>
 </body>
