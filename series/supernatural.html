@@ -40,12 +40,7 @@
         }
         .line {
             opacity: 0; /* مخفی کردن خط در ابتدا */
-            animation: fadeIn 0.5s forwards; /* انیمیشن نمایان شدن */
             margin-bottom: 0.5em; /* فاصله بین خطوط */
-        }
-        @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
         }
 
         /* استایل مدال */
@@ -111,13 +106,11 @@
             text.forEach((line, index) => {
                 const lineElement = document.createElement('div');
                 lineElement.className = 'line';
-                lineElement.textContent = line;
                 container.appendChild(lineElement);
 
                 // انیمیشن تایپ برای هر خط
                 setTimeout(() => {
                     lineElement.style.opacity = '1'; // نمایان کردن خط
-                    lineElement.textContent = ''; // خالی کردن محتوای خط
                     let charIndex = 0;
                     const typingInterval = setInterval(() => {
                         lineElement.textContent += line.charAt(charIndex);
@@ -199,11 +192,11 @@
                                     <div class="flex flex-wrap justify-center">
                         `);
                         for (let episode = 1; episode <= 20; episode++) {
-                            document.write(`\
+                            document.write(`
                                 <a href="#" class="episode-link" onclick="openModal(${episode})">Episode ${episode}</a>
                             `);
                         }
-                        document.write(`\
+                        document.write(`
                                     </div>
                                 </div>
                             </div>
