@@ -5,8 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>supernatural - Series Page</title>
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400&display=swap" rel="stylesheet"> <!-- فونت فارسی -->
     <style>
-        body { display: none; }
+        body { display: none; font-family: 'Vazirmatn', sans-serif; } /* استفاده از فونت فارسی */
         .fade-in { opacity: 0; animation: fadeIn 1s ease forwards; }
         @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
         .animate-zoom:hover { transform: scale(1.05); transition: transform 0.3s ease-in-out; }
@@ -40,7 +41,7 @@
         }
         .line {
             opacity: 0; /* مخفی کردن خط در ابتدا */
-            margin-bottom: 0.5em; /* فاصله بین خطوط */
+            margin: 0; /* حذف فاصله بین خطوط */
         }
 
         /* استایل مدال */
@@ -99,9 +100,9 @@
             const text = [
                 "دو برادر به دنبال",
                 "پدر گمشده شان هستند",
-                "مردی که به ان دو اموزش",
-                "که چگونه در مقابل ",
-                "ک  طبیعی بجنگند...."
+                "مردی که به آن دو آموزش",
+                "داده که چگونه در مقابل",
+                "نیروهای ماورای طبیعی بجنگند...."
             ];
             const container = document.getElementById('typingContainer');
 
