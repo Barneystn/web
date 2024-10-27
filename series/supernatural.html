@@ -32,21 +32,20 @@
         /* استایل انیمیشن تایپی */
         .typing {
             font-family: 'Courier New', Courier, monospace; /* فونت تایپی */
-            white-space: normal; /* اجازه شکستن خط */
+            white-space: pre; /* جلوگیری از شکستن خط */
             overflow: hidden; /* مخفی کردن متون اضافی */
             display: inline-block; /* برای جلوگیری از مشکلات در اندازه‌گیری عرض */
             direction: rtl; /* از راست به چپ */
+            text-align: right; /* چپ‌چین کردن متن */
         }
         .line {
             opacity: 0; /* مخفی کردن خط در ابتدا */
-            animation: typing 3s steps(30, end) forwards; /* انیمیشن تایپی */
-            display: inline-block; /* برای انیمیشن خط به خط */
+            animation: fadeIn 0.5s forwards; /* انیمیشن نمایان شدن */
             margin-bottom: 0.5em; /* فاصله بین خطوط */
         }
-
-        @keyframes typing {
-            from { width: 0; }
-            to { width: 100%; }
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
         }
 
         /* استایل مدال */
@@ -118,8 +117,16 @@
                 // انیمیشن تایپ برای هر خط
                 setTimeout(() => {
                     lineElement.style.opacity = '1'; // نمایان کردن خط
-                    lineElement.style.animation = `typing ${line.length * 0.1}s steps(${line.length}, end) forwards`; // تنظیم انیمیشن بر اساس طول متن
-                }, index * 4000); // زمان تاخیر برای شروع خط جدید (زمان بین خط‌ها)
+                    lineElement.textContent = ''; // خالی کردن محتوای خط
+                    let charIndex = 0;
+                    const typingInterval = setInterval(() => {
+                        lineElement.textContent += line.charAt(charIndex);
+                        charIndex++;
+                        if (charIndex >= line.length) {
+                            clearInterval(typingInterval);
+                        }
+                    }, 100); // سرعت تایپ (میلی‌ثانیه)
+                }, index * 3000); // زمان تاخیر برای شروع خط جدید (۳ ثانیه بین خط‌ها)
             });
         }
 
@@ -172,7 +179,7 @@
     <main class="container mx-auto px-4 py-8 relative">
         <div class="text-center fade-in">
             <img src="https://i.ibb.co/1JqZymT/supernatural-castiel-dean-and-sam-fi61lb0dkhpwdt4j.webp" alt="supernatural" class="w-64 h-auto mx-auto mb-4 rounded-lg animate-zoom shadow-lg">
-            <div id="typingContainer" class="text-lg max-w-lg mx-auto mt-4 text-gray-300 leading-relaxed"></div>
+            <div id="typingContainer" class="text-lg max-w-lg mx-auto mt-4 text-gray-300 leading-relaxed typing"></div>
             <div class="mt-4">
                 <p class="text-gray-300">IMDb Rating: <span class="font-bold">8.6/10</span></p>
                 <p class="text-gray-300">Rotten Tomatoes: <span class="font-bold">91%</span></p>
