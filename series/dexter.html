@@ -88,8 +88,22 @@
             }
         }
 
-        function openModal() {
-            document.getElementById('episodeModal').style.display = 'flex';
+        function openModal(episode) {
+            const modal = document.getElementById('episodeModal');
+            const downloadLink = document.getElementById('downloadLink');
+            const telegramLink = document.getElementById('telegramLink');
+
+            // تغییر لینک‌ها برای اپیزود اول
+            if (episode === 1) {
+                downloadLink.href = "https://exampl.com";
+                telegramLink.href = "https://t.me/ll";
+            } else {
+                // می‌توانید برای سایر اپیزودها لینک‌های مختلف اضافه کنید
+                downloadLink.href = "#"; // لینک پیش‌فرض
+                telegramLink.href = "#"; // لینک پیش‌فرض
+            }
+
+            modal.style.display = 'flex';
         }
 
         function closeModal() {
@@ -130,7 +144,7 @@
                         `);
                         for (let episode = 1; episode <= 20; episode++) {
                             document.write(`
-                                <a href="#" class="episode-link" onclick="openModal()">Episode ${episode}</a>
+                                <a href="#" class="episode-link" onclick="openModal(${episode})">Episode ${episode}</a>
                             `);
                         }
                         document.write(`
@@ -148,8 +162,8 @@
     <div id="episodeModal" class="modal" onclick="closeModal()">
         <div class="modal-content" onclick="event.stopPropagation()">
             <h2 class="text-xl font-bold text-white">Download Links</h2>
-            <a href="#" class="modal-button">Download Link</a>
-            <a href="#" class="modal-button">Telegram File</a>
+            <a id="downloadLink" href="#" class="modal-button">Download Link</a>
+            <a id="telegramLink" href="#" class="modal-button">Telegram File</a>
             <button class="modal-button bg-red-600" onclick="closeModal()">Close</button>
         </div>
     </div>
