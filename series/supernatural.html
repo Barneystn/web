@@ -34,17 +34,23 @@
             font-family: 'Courier New', Courier, monospace; /* فونت تایپی */
             white-space: normal; /* اجازه شکستن خط */
             overflow: hidden; /* مخفی کردن متون اضافی */
-            width: 0; /* عرض اولیه */
-            animation: typing 5s steps(30, end), blink 0.75s step-end infinite; /* انیمیشن تایپی و چشمک زدن */
-            direction: rtl; /* از راست به چپ */
             display: inline-block; /* برای جلوگیری از مشکلات در اندازه‌گیری عرض */
+            direction: rtl; /* از راست به چپ */
         }
+        .line {
+            opacity: 0; /* مخفی کردن خط در ابتدا */
+            animation: typing 3s steps(30, end) forwards, fadeIn 0.5s forwards; /* انیمیشن تایپی و نمایش */
+            display: inline-block; /* برای انیمیشن خط به خط */
+            margin-bottom: 0.5em; /* فاصله بین خطوط */
+        }
+
         @keyframes typing {
             from { width: 0; }
             to { width: 100%; }
         }
-        @keyframes blink {
-            50% { border-color: transparent; }
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
         }
 
         /* استایل مدال */
@@ -93,9 +99,31 @@
             const isLoggedIn = localStorage.getItem('isLoggedIn');
             if (isLoggedIn === 'true') {
                 document.body.style.display = 'block';
+                typeText(); // شروع تایپ متن
             } else {
                 window.location.href = '../login.html';
             }
+        }
+
+        function typeText() {
+            const text = [
+                "دو برادر به دنبال پدر گمشده شان هستند،",
+                "مردی که آنها را بزرگ کرده و به آن دو آموزش داده",
+                "که چگونه در مقابل نیروهای ماورای طبیعی بجنگند...."
+            ];
+            const container = document.getElementById('typingContainer');
+
+            text.forEach((line, index) => {
+                const lineElement = document.createElement('div');
+                lineElement.className = 'line';
+                lineElement.textContent = line;
+                container.appendChild(lineElement);
+
+                // انیمیشن تایپ برای هر خط
+                setTimeout(() => {
+                    lineElement.style.opacity = '1'; // نمایان کردن خط
+                }, index * 3500); // زمان تاخیر برای هر خط
+            });
         }
 
         function toggleEpisodeLinks(season) {
@@ -147,9 +175,7 @@
     <main class="container mx-auto px-4 py-8 relative">
         <div class="text-center fade-in">
             <img src="https://i.ibb.co/1JqZymT/supernatural-castiel-dean-and-sam-fi61lb0dkhpwdt4j.webp" alt="supernatural" class="w-64 h-auto mx-auto mb-4 rounded-lg animate-zoom shadow-lg">
-            <p class="text-lg max-w-lg mx-auto mt-4 text-gray-300 leading-relaxed typing">
-                دو برادر به دنبال پدر گمشده شان هستند، مردی که آنها را بزرگ کرده و به آن دو آموزش داده که چگونه در مقابل نیروهای ماورای طبیعی بجنگند....
-            </p>
+            <div id="typingContainer" class="text-lg max-w-lg mx-auto mt-4 text-gray-300 leading-relaxed"></div>
             <div class="mt-4">
                 <p class="text-gray-300">IMDb Rating: <span class="font-bold">8.6/10</span></p>
                 <p class="text-gray-300">Rotten Tomatoes: <span class="font-bold">91%</span></p>
