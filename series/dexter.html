@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dexter - Series Page</title>
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
     <style>
         body { display: none; }
         .fade-in { opacity: 0; animation: fadeIn 1s ease forwards; }
@@ -70,27 +69,6 @@
         .modal-button:hover {
             background-color: #2563EB;
         }
-
-        /* استایل تصویر و توضیحات */
-        .main-image {
-            position: relative;
-            width: 100%;
-            max-width: 1000px; /* حداکثر عرض */
-            height: auto;
-            margin: auto;
-        }
-        .image-description {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            color: white;
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
-            text-align: center;
-            font-family: 'Roboto', sans-serif;
-            font-size: 1.5rem;
-            padding: 10px;
-        }
     </style>
     <script>
         window.onload = function() {
@@ -150,17 +128,13 @@
 
     <main class="container mx-auto px-4 py-8 relative">
         <div class="text-center fade-in">
-            <div class="main-image">
-                <img src="https://i.ibb.co/tB8R8vW/99741f6b-8ea0-4016-8393-06903fd1463f.webp" alt="Dexter" class="w-full h-auto rounded-lg animate-zoom shadow-lg">
-                <div class="image-description">
-                    Dexter is a series about a forensic expert who doubles as a vigilante serial killer. 
-                    This show dives into the complex life of Dexter as he navigates both his dark impulses and personal life.
-                </div>
-            </div>
+            <img src="https://i.ibb.co/tB8R8vW/99741f6b-8ea0-4016-8393-06903fd1463f.webp" alt="Dexter" class="w-64 h-auto mx-auto mb-4 rounded-lg animate-zoom shadow-lg">
+            <p class="text-lg max-w-lg mx-auto mt-4 text-gray-300 leading-relaxed">
+                Dexter is a series about a forensic expert who doubles as a vigilante serial killer. 
+                This show dives into the complex life of Dexter as he navigates both his dark impulses and personal life.
+            </p>
             <div class="mt-4">
-                <p class="text-lg max-w-lg mx-auto mt-4 text-gray-300 leading-relaxed">
-                    IMDb Rating: <span class="font-bold">8.6/10</span>
-                </p>
+                <p class="text-gray-300">IMDb Rating: <span class="font-bold">8.6/10</span></p>
                 <p class="text-gray-300">Rotten Tomatoes: <span class="font-bold">91%</span></p>
             </div>
 
@@ -178,11 +152,11 @@
                                     <div class="flex flex-wrap justify-center">
                         `);
                         for (let episode = 1; episode <= 20; episode++) {
-                            document.write(`
+                            document.write(`\
                                 <a href="#" class="episode-link" onclick="openModal(${episode})">Episode ${episode}</a>
                             `);
                         }
-                        document.write(`
+                        document.write(`\
                                     </div>
                                 </div>
                             </div>
